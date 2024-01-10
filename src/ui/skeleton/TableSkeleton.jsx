@@ -14,7 +14,7 @@ const TableSkeleton = ({ headersLength, rowsLength }) => {
 
   return (
     <Table>
-      <TableHeader>
+      {/* <TableHeader>
         <TableRow>
           {headersArray.map((el, i) => (
             <TableHead key={i}>
@@ -22,7 +22,7 @@ const TableSkeleton = ({ headersLength, rowsLength }) => {
             </TableHead>
           ))}
         </TableRow>
-      </TableHeader>
+      </TableHeader> */}
       <TableBody>
         {rowsArray.map((el, j) => (
           <TableRow key={j}>

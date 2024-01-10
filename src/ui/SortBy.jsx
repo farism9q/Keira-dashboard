@@ -11,7 +11,7 @@ const SortBy = ({ options }) => {
 
   return (
     <select
-      className="px-2 py-1 text-lg dark:text-stone-800 dark:bg-blue-50 rounded-md focus:outline-none focus:ring focus:ring-stone-800"
+      className="px-2 py-1 text-lg bg-stone-200 text-zinc-800 dark:text-stone-50 dark:bg-gray-700 rounded-md focus:outline-none"
       onChange={handleChange}
       value={currentSortByValue}
     >
