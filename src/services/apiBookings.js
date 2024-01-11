@@ -1,10 +1,17 @@
-import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import {
+  Timestamp,
+  collection,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "./firebase_configure";
 import { format } from "date-fns";
 
+const bookingsRef = collection(db, "bookings");
+
 export async function getBookings({ sortBy }) {
-  const bookingsRef = collection(db, "bookings");
-  console.log(bookingsRef);
   let q;
   const bookings = [];
 
@@ -32,5 +39,25 @@ export async function getBookings({ sortBy }) {
 
     bookings.push({ id: booking.id, ...booking.data(), ...formattedDates });
   });
+  return bookings;
+}
+
+export async function getBookingsAfterDate(date) {
+  const FBDate = Timestamp.fromDate(date);
+
+  const q = query(bookingsRef, where("bookingDate", ">=", FBDate));
+  const bookings = [];
+
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach(booking => {
+    bookings.push({
+      id: booking.id,
+      ...booking.data(),
+    });
+  });
+
+  console.log(bookings);
+
   return bookings;
 }

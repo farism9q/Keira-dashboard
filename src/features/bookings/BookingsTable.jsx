@@ -4,9 +4,8 @@ import {
   TableBody,
   TableRow,
   TableHead,
-  TableFooter,
   TableCaption,
-} from "@/components/ui/table";
+} from "../../components/ui/table";
 import TablePagination from "../../ui/TablePagination";
 import { useSearchParams } from "react-router-dom";
 import { TOTAL_RESULTS } from "../../utils/constants";

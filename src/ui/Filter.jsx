@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { Button } from "../components/ui/button";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const Filter = ({ field, values }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedFilter, setSelectedFilter] = useState("all");
+  const [selectedFilter, setSelectedFilter] = useState(values[0].label);
 
   function handleClick(val) {
     setSelectedFilter(filter => val.label);
     searchParams.set(field, `${val.value}`);
     setSearchParams(searchParams);
   }
-
-  console.log(selectedFilter);
 
   return (
     <div className="flex gap-1 bg-stone-200 dark:bg-gray-700 p-1 rounded-lg">

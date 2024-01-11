@@ -1,21 +1,15 @@
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-import {
-  HiEllipsisVertical,
-  HiEyeSlash,
-  HiCurrencyDollar,
-  HiOutlineGlobeAmericas,
-} from "react-icons/hi2";
+import BookingsChart from "./BookingsChart";
+import UsersTypeChart from "./UsersTypeChart";
 
 const DashboardLayout = () => {
   return (
-    <div>
-      <DropdownMenu>
+    <div className="flex flex-col gap-5">
+      <BookingsChart />
+
+      <div className="grid grid-cols-2 gap-4">
+        <UsersTypeChart />
+      </div>
+      {/* <DropdownMenu>
         <DropdownMenuTrigger>
           {<HiEllipsisVertical size={28} />}
         </DropdownMenuTrigger>
@@ -33,7 +27,7 @@ const DashboardLayout = () => {
             <span>Team</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
-      </DropdownMenu>
+      </DropdownMenu> */}
     </div>
   );
 };

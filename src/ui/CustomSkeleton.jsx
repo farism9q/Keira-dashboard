@@ -4,6 +4,8 @@ const CustomSkeleton = ({ type }) => {
     image: "h-10 w-10 rounded-full",
     headCell: "w-[6rem] h-[3rem] rounded-md",
     rowCell: "w-[6rem] h-[2rem] rounded-full",
+    areaChart: "w-full h-[300px] rounded-md",
+    pieChart: "w-[350px] h-[350px] rounded-full",
   };
 
   return (
@@ -12,11 +14,5 @@ const CustomSkeleton = ({ type }) => {
     />
   );
 };
-
-// <div className="bg-red-500">
-
-//   <Skeleton className={SkeletonType["image"]} />
-//   <Skeleton className={SkeletonType["rowCell"]} />
-// </div>
 
 export default CustomSkeleton;

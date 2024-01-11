@@ -3,15 +3,21 @@ import DashboardLayout from "../features/dashboard/DashboardLayout";
 import ConfirmModal from "../ui/ConfirmModal";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
+import Filter from "../ui/Filter";
 
 const Dashboard = () => {
   return (
     <>
       <Row>
         <Heading header={"Dashboard"} />
-        <h4>Sort/Filter</h4>
+        <Filter
+          field={"last"}
+          values={[
+            { label: "30 days ago", value: "30" },
+            { label: "60 days ago", value: "60" },
+            { label: "90 days ago", value: "90" },
+          ]}
+        />
       </Row>
       <DashboardLayout />
 
