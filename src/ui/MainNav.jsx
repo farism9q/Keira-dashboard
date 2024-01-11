@@ -1,8 +1,8 @@
 import {
   HiOutlineUsers,
   HiOutlineInformationCircle,
-  HiOutlineArrowLongRight,
   HiOutlineChartBar,
+  HiOutlineCalendarDays,
 } from "react-icons/hi2";
 import { LiaCarSideSolid } from "react-icons/lia";
 
@@ -17,6 +17,12 @@ const MainNav = () => {
         <NaviLink to="/dashboard">
           <HiOutlineChartBar className={iconStyle} />
           Dashboard
+        </NaviLink>
+      </li>
+      <li>
+        <NaviLink to="/bookings">
+          <HiOutlineCalendarDays className={iconStyle} />
+          Bookings
         </NaviLink>
       </li>
       <li>

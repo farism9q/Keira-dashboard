@@ -25,7 +25,7 @@ const ReportRow = ({ report }) => {
           {isAnswered ? "Responded" : "Waiting..."}
         </Status>
       </TableCell>
-      <TableCell>{"11/11/2022"}</TableCell>
+      <TableCell>{date}</TableCell>
       <TableCell>
         <DropdownMenu>
           <DropdownMenuTrigger>

@@ -1,5 +1,6 @@
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "./firebase_configure";
+import { format } from "date-fns";
 
 export async function getUsers({ sortBy }) {
   const usersRef = collection(db, "users");
@@ -16,7 +17,11 @@ export async function getUsers({ sortBy }) {
   const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach(user => {
-    users.push({ id: user.id, ...user.data() });
+    users.push({
+      id: user.id,
+      ...user.data(),
+      memberSince: format(user.data().memberSince, "MM/dd/yyyy"),
+    });
   });
   console.log(users);
   return users;

@@ -1,5 +1,6 @@
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "./firebase_configure";
+import { format } from "date-fns";
 
 export async function getReports({ sortBy }) {
   const reportsRef = collection(db, "Reports");
@@ -16,9 +17,13 @@ export async function getReports({ sortBy }) {
   const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach(report => {
-    reports.push({ id: report.id, ...report.data() });
+    const date = format(report.data().date.toDate(), "MM/dd/yyyy");
+    reports.push({
+      id: report.id,
+      ...report.data(),
+      date: date,
+    });
   });
 
-  console.log(reports);
   return reports;
 }
