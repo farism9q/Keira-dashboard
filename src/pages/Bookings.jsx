@@ -1,11 +1,7 @@
 import BookingsTable from "../features/bookings/BookingsTable";
 
 const Bookings = () => {
-  return (
-    <div>
-      <BookingsTable />
-    </div>
-  );
+  return <BookingsTable />;
 };
 
 export default Bookings;

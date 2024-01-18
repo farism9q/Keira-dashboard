@@ -20,6 +20,7 @@ const headers = [
   "Status",
   "start date",
   "end date",
+  "",
 ];
 
 const BookingsTable = () => {

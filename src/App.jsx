@@ -15,6 +15,7 @@ import PageNotFound from "./pages/PageNotFound";
 import { DarkModeProvider } from "./contexts/DarkModeProvider";
 import ReportDetails from "./features/reports/ReportDetails";
 import Bookings from "./pages/Bookings";
+import BookingDetails from "./features/bookings/BookingDetails";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/bookings",
         element: <Bookings />,
+      },
+      {
+        path: "/bookings/:bookingId",
+        element: <BookingDetails />,
       },
       {
         path: "/reports",

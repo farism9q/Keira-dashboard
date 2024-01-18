@@ -1,6 +1,12 @@
 import { Skeleton } from "../components/ui/skeleton";
-const CustomSkeleton = ({ type }) => {
+const CustomSkeleton = ({
+  type = "square",
+  height = "300px",
+  width = "100%",
+  rounded = "full",
+}) => {
   const SkeletonType = {
+    square: `h-[${height}] w-[${width}] rounded-${rounded}`,
     image: "h-10 w-10 rounded-full",
     headCell: "w-[6rem] h-[3rem] rounded-md",
     rowCell: "w-[6rem] h-[2rem] rounded-full",

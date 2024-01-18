@@ -1,11 +1,16 @@
 import { TableCell, TableRow } from "../../components/ui/table";
-import Image from "../../ui/Image";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../../components/ui/popover";
 import Tag from "../../ui/Tag";
-import { useDarkMode } from "../../contexts/DarkModeProvider";
-import Status from "../../ui/Status";
+import { HiEllipsisVertical, HiOutlineEye } from "react-icons/hi2";
+import PopoverItem from "../../ui/PopoverItem";
+import { useNavigate } from "react-router-dom";
 
 const BookingRow = ({ booking }) => {
-  // const { darkMode } = useDarkMode();
+  const navigate = useNavigate();
 
   const {
     bookingID,
@@ -27,30 +32,8 @@ const BookingRow = ({ booking }) => {
         : "text-blue-50",
   };
 
-  // const tagColors = darkMode
-  //   ? {
-  //       bgColor:
-  //         bookingStatus === "تم تسليم السيارة للعميل"
-  //           ? "bg-green-500"
-  //           : "bg-blue-500",
-  //       color:
-  //         bookingStatus === "تم تسليم السيارة للعميل"
-  //           ? "text-green-50"
-  //           : "text-blue-50",
-  //     }
-  //   : {
-  //       bgColor:
-  //         bookingStatus === "تم تسليم السيارة للعميل"
-  //           ? "bg-blue-600"
-  //           : "bg-amber-500",
-  //       color:
-  //         bookingStatus === "تم تسليم السيارة للعميل"
-  //           ? "text-blue-50"
-  //           : "text-amber-50",
-  //     };
-
   return (
-    <TableRow>
+    <TableRow className="group" onClick={e => e.stopPropagation()}>
       <TableCell>#{bookingID}</TableCell>
       <TableCell>#{carID}</TableCell>
       <TableCell>#{userID}</TableCell>
@@ -63,6 +46,22 @@ const BookingRow = ({ booking }) => {
       </TableCell>
       <TableCell>{bookingTimeSD}</TableCell>
       <TableCell>{bookingTimeED}</TableCell>
+      <TableCell>
+        {
+          <Popover>
+            <PopoverTrigger>
+              <HiEllipsisVertical />
+            </PopoverTrigger>
+
+            <PopoverContent className="w-25">
+              <PopoverItem onClick={() => navigate(`${bookingID}`)}>
+                <HiOutlineEye />
+                Show details
+              </PopoverItem>
+            </PopoverContent>
+          </Popover>
+        }
+      </TableCell>
     </TableRow>
   );
 };
