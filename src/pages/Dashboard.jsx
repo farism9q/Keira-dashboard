@@ -1,6 +1,4 @@
-import { HiTrash } from "react-icons/hi2";
 import DashboardLayout from "../features/dashboard/DashboardLayout";
-import ConfirmModal from "../ui/ConfirmModal";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
 import Filter from "../ui/Filter";
@@ -20,12 +18,6 @@ const Dashboard = () => {
         />
       </Row>
       <DashboardLayout />
-
-      <ConfirmModal>
-        <div role="button" className="h-8 w-8 bg-red-600">
-          <HiTrash />
-        </div>
-      </ConfirmModal>
     </>
   );
 };

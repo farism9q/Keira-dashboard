@@ -1,4 +1,5 @@
 import BookingsChart from "./BookingsChart";
+import InitiatedReportCountsChart from "./InitiatedReportCountsBy";
 import UsersTypeChart from "./UsersTypeChart";
 
 const DashboardLayout = () => {
@@ -7,27 +8,9 @@ const DashboardLayout = () => {
       <BookingsChart />
 
       <div className="grid grid-cols-2 gap-4">
+        <InitiatedReportCountsChart />
         <UsersTypeChart />
       </div>
-      {/* <DropdownMenu>
-        <DropdownMenuTrigger>
-          {<HiEllipsisVertical size={28} />}
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuItem>
-            {<HiEyeSlash />}
-            <span>My Account</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            {<HiCurrencyDollar />}
-            <span>Billing</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            {<HiOutlineGlobeAmericas />}
-            <span>Team</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu> */}
     </div>
   );
 };

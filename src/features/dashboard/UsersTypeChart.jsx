@@ -1,14 +1,6 @@
 import { useUsersType } from "./useUsersType";
 import CustomSkeleton from "../../ui/CustomSkeleton";
-import {
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
-import Box from "../../ui/Box";
+import PieChart from "../../ui/PieChart";
 
 const startData = [
   {
@@ -27,7 +19,7 @@ const startData = [
 const UsersTypeChart = () => {
   const { usersType, isLoading } = useUsersType();
 
-  if (isLoading) return <CustomSkeleton type={"pieChart"} />;
+  if (isLoading) return <CustomSkeleton rounded="lg" />;
 
   const data = startData.map((type, i) => {
     return {
@@ -36,41 +28,7 @@ const UsersTypeChart = () => {
     };
   });
 
-  return (
-    <Box header={"Users type"}>
-      <ResponsiveContainer height={250} width={"100%"}>
-        <PieChart>
-          <Pie
-            legendType="square"
-            data={data}
-            nameKey={"type"}
-            dataKey={"count"}
-            innerRadius={85}
-            outerRadius={110}
-            cx={"40%"}
-            cy={"50%"}
-            paddingAngle={3}
-          >
-            {startData.map(entry => (
-              <Cell
-                fill={entry.color}
-                stroke={entry.color}
-                key={entry.duration}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend
-            wrapperStyle={{ fontSize: "28px" }}
-            verticalAlign="middle"
-            align="right"
-            width="30%"
-            layout="vertical"
-          />
-        </PieChart>
-      </ResponsiveContainer>
-    </Box>
-  );
+  return <PieChart data={data} header={"User Types"} />;
 };
 
 export default UsersTypeChart;

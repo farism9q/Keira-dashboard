@@ -68,14 +68,12 @@ const BookingsChart = () => {
     };
   });
 
-  if (!transactions?.length) return <h1>NOTHING TO SHOW</h1>;
-
   return (
     <Box header={"Bookings Transactions"}>
       <ResponsiveContainer height={300} width={"100%"}>
-        <AreaChart data={fakeData}>
+        <AreaChart data={transactions}>
           <XAxis
-            dataKey={"label"}
+            dataKey={"month"}
             tick={{ fill: colors.text }}
             tickLine={{ stroke: colors.text }}
           />
@@ -92,23 +90,23 @@ const BookingsChart = () => {
             }}
           />
           <Area
-            dataKey={"totalSales"}
+            dataKey={"totalPrice"}
             type={"monotone"}
             stroke={colors.totalPrice.stroke}
             fill={colors.totalPrice.fill}
             strokeWidth={2}
-            name="Total sales"
+            name="Total price"
             unit={"RS"}
           />
 
           <Area
-            dataKey={"extrasSales"}
+            dataKey={"profits"}
             type={"monotone"}
             stroke={colors.profits.stroke}
             fill={colors.profits.fill}
             strokeWidth={2}
             name="Profits"
-            unit={"Riyal SA"}
+            unit={"RS"}
           />
         </AreaChart>
       </ResponsiveContainer>
