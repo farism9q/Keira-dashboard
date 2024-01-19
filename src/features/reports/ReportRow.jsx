@@ -1,20 +1,18 @@
 import { TableCell, TableRow } from "@/components/ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  HiArrowUpOnSquare,
-  HiEye,
-  HiTrash,
-  HiEllipsisVertical,
-} from "react-icons/hi2";
+
 import Status from "../../ui/Status";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../../components/ui/popover";
+import { HiEllipsisVertical, HiEye } from "react-icons/hi2";
+import PopoverItem from "../../ui/PopoverItem";
+import { useNavigate } from "react-router-dom";
 
 const ReportRow = ({ report }) => {
-  const { userID, carID, isAnswered, date } = report;
+  const navigate = useNavigate();
+  const { id, userID, carID, isAnswered, date } = report;
 
   return (
     <TableRow>
@@ -27,25 +25,16 @@ const ReportRow = ({ report }) => {
       </TableCell>
       <TableCell>{date}</TableCell>
       <TableCell>
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            {<HiEllipsisVertical size={28} />}
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem>
-              {<HiEye />}
-              <span>View details</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              {<HiArrowUpOnSquare />}
-              <span>Billing</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              {<HiTrash />}
-              <span>Team</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Popover>
+          <PopoverTrigger>
+            <HiEllipsisVertical />
+          </PopoverTrigger>
+          <PopoverContent className="w-40">
+            <PopoverItem onClick={() => navigate(`${id}`)}>
+              <HiEye /> Show details
+            </PopoverItem>
+          </PopoverContent>
+        </Popover>
       </TableCell>
     </TableRow>
   );

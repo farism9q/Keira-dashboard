@@ -27,11 +27,14 @@ export async function getBookings({ sortBy }) {
   const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach(booking => {
-    const dates = formateFBDate(
-      booking.data().bookingTimeSD,
-      booking.data().bookingTimeED,
-      booking.data().bookingDate
-    );
+    const dates = formateFBDate({
+      showTime: true,
+      dates: [
+        booking.data().bookingTimeSD,
+        booking.data().bookingTimeED,
+        booking.data().bookingDate,
+      ],
+    });
 
     const formattedDates = {
       bookingTimeSD: dates[0],
@@ -49,11 +52,13 @@ export async function getBooking(id) {
 
   const data = await getDoc(docRef);
 
-  const dates = formateFBDate(
-    data.data().bookingTimeSD,
-    data.data().bookingTimeED,
-    data.data().bookingDate
-  );
+  const dates = formateFBDate({
+    dates: [
+      data.data().bookingTimeSD,
+      data.data().bookingTimeED,
+      data.data().bookingDate,
+    ],
+  });
 
   const formattedDates = {
     bookingTimeSD: dates[0],

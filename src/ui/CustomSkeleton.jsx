@@ -3,10 +3,14 @@ const CustomSkeleton = ({
   type = "square",
   height = "300px",
   width = "100%",
-  rounded = "full",
+  rounded = "lg",
 }) => {
+  console.log(height);
+  console.log(width);
+
   const SkeletonType = {
     square: `h-[${height}] w-[${width}] rounded-${rounded}`,
+    row: "w-full h-[2rem] rounded-md",
     image: "h-10 w-10 rounded-full",
     headCell: "w-[6rem] h-[3rem] rounded-md",
     rowCell: "w-[6rem] h-[2rem] rounded-full",

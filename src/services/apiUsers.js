@@ -5,9 +5,11 @@ import {
   getCountFromServer,
   query,
   where,
+  doc,
+  getDoc,
 } from "firebase/firestore";
 import { db } from "./firebase_configure";
-import { format } from "date-fns";
+import { formateFBDate } from "../utils/helper";
 
 const usersRef = collection(db, "users");
 
@@ -28,10 +30,20 @@ export async function getUsers({ sortBy }) {
     users.push({
       id: user.id,
       ...user.data(),
-      memberSince: format(user.data().memberSince, "MM/dd/yyyy"),
+      memberSince: formateFBDate({
+        dates: [user.data().memberSince],
+      })[0],
     });
   });
   return users;
+}
+
+export async function getUser(id) {
+  const docRef = doc(usersRef, id);
+
+  const data = await getDoc(docRef);
+
+  return data.data();
 }
 
 // Get the numbers of each users type in Keira

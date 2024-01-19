@@ -53,7 +53,7 @@ const BookingRow = ({ booking }) => {
               <HiEllipsisVertical />
             </PopoverTrigger>
 
-            <PopoverContent className="w-25">
+            <PopoverContent className="w-40">
               <PopoverItem onClick={() => navigate(`${bookingID}`)}>
                 <HiOutlineEye />
                 Show details
