@@ -5,9 +5,6 @@ const CustomSkeleton = ({
   width = "100%",
   rounded = "lg",
 }) => {
-  console.log(height);
-  console.log(width);
-
   const SkeletonType = {
     square: `h-[${height}] w-[${width}] rounded-${rounded}`,
     row: "w-full h-[2rem] rounded-md",

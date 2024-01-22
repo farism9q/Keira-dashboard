@@ -16,6 +16,8 @@ import { DarkModeProvider } from "./contexts/DarkModeProvider";
 import ReportDetails from "./features/reports/ReportDetails";
 import Bookings from "./pages/Bookings";
 import BookingDetails from "./features/bookings/BookingDetails";
+import Login from "./features/authentication/Login";
+import ProtectedRoutes from "./ui/ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -23,11 +25,19 @@ const router = createBrowserRouter([
     element: <Navigate replace to="/dashboard" />,
   },
   {
+    path: "/login",
+    element: <Login />,
+  },
+  {
     path: "*",
     element: <PageNotFound />,
   },
   {
-    element: <AppLayout />,
+    element: (
+      <ProtectedRoutes>
+        <AppLayout />
+      </ProtectedRoutes>
+    ),
     children: [
       {
         path: "/dashboard",
