@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/ui/button";
 import { useSearchParams } from "react-router-dom";
 
 const Filter = ({ field, values }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedFilter, setSelectedFilter] = useState(values[0].label);
+  const currentFilterValue = searchParams.get(field) || values.at(0).value;
 
   function handleClick(val) {
-    setSelectedFilter(filter => val.label);
     searchParams.set(field, `${val.value}`);
     setSearchParams(searchParams);
   }
@@ -17,8 +16,8 @@ const Filter = ({ field, values }) => {
       {values.map(val => (
         <Button
           onClick={() => handleClick(val)}
-          className={` text-zinc-600 dark:text-zinc-100 hover:bg-blue-500 hover:text-zinc-200 ${
-            selectedFilter === val.label
+          className={`text-zinc-600 dark:text-zinc-100 hover:bg-blue-500 hover:text-zinc-200 ${
+            currentFilterValue === val.value.toString()
               ? "bg-blue-500 text-zinc-200"
               : "bg-stone-200 dark:bg-gray-700"
           }`}

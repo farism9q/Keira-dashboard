@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import ReportResponseTemplate from "./ReportResponseTemplate";
 import { useReport } from "./useReport";
 import CustomSkeleton from "../../ui/CustomSkeleton";
+import AdminReportResponse from "./AdminReportResponse";
 
 const ReportDetails = () => {
   const navigate = useNavigate();
@@ -15,9 +16,15 @@ const ReportDetails = () => {
 
   if (isLoading) return <CustomSkeleton />;
 
+  const { response, responseDate } = report;
+
   return (
     <>
       <ReportDetailsBox report={report} />
+      {report.isAnswered && (
+        <AdminReportResponse response={response} responseDate={responseDate} />
+      )}
+
       <div className="flex justify-end gap-4">
         <Button
           variant={"ghost"}
@@ -27,12 +34,14 @@ const ReportDetails = () => {
           <HiOutlineArrowLeftCircle className="mr-2 h-4 w-4" /> Back
         </Button>
 
-        <ReportResponseTemplate reporterId={report.userID}>
-          <Button className="bg-green-400 text-black text-base hover:bg-green-500">
-            <HiOutlineEnvelopeOpen className="mr-2 h-4 w-4" /> Send A response
-            via Email
-          </Button>
-        </ReportResponseTemplate>
+        {!report.isAnswered && (
+          <ReportResponseTemplate reporterId={report.userID}>
+            <Button className="bg-green-400 font-light text-black dark:text-slate-50 text-base hover:bg-green-500">
+              <HiOutlineEnvelopeOpen className="mr-2 h-4 w-4" /> Send A response
+              via Email
+            </Button>
+          </ReportResponseTemplate>
+        )}
       </div>
     </>
   );

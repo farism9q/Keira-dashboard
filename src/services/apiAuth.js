@@ -35,9 +35,7 @@ export async function login({ email, password }) {
   });
   const body = await res.json();
 
-  const { data: admin, token, status } = body;
+  const { data: admin, token, tokenExpiresIn, status } = body;
 
-  localStorage.setItem("user", JSON.stringify({ ...admin, token }));
-
-  return { ...admin, token, status };
+  return { ...admin, token, tokenExpiresIn, status };
 }

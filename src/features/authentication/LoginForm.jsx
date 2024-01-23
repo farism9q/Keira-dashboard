@@ -10,7 +10,6 @@ const LoginForm = () => {
 
   function handleLogin(e) {
     e.preventDefault();
-    e.stopPropagation();
 
     login({
       email,

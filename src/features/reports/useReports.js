@@ -7,21 +7,23 @@ export function useReports() {
   const filterValue = searchParams.get("isAnswered");
   const sortRaw = searchParams.get("sortBy")?.split("-") || ["date", "desc"];
 
+  // 1) SORT
   const sortBy = {
-    field: sortRaw.at(0),
-    direction: sortRaw.at(1),
+    field: sortRaw.at(0) || "date",
+    direction: sortRaw.at(1) || "desc",
   };
 
+  // 2) FILTER
   const filter =
     filterValue && filterValue !== "all"
       ? {
           isAnswered: filterValue === "true",
         }
-      : undefined;
+      : null;
 
   const { data: reports, isLoading } = useQuery({
     queryFn: () => getReports({ filter, sortBy }),
-    queryKey: ["reports", filter, sortBy],
+    queryKey: ["reports", filter || { isAnswered: "all" }, sortBy],
   });
 
   return { reports, isLoading };

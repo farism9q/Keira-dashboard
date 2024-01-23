@@ -8,8 +8,13 @@ export function useLogin() {
 
   const { mutate: login, isLoading: isLogging } = useMutation({
     mutationFn: ({ email, password }) => loginApi({ email, password }),
-    onSuccess: data => {
-      queryClient.setQueryData(["user"], data.admin); // Adding user data immediately onSuccess
+    onSuccess: ({ admin, token, tokenExpiresIn }) => {
+      queryClient.setQueryData(["user"], admin); // Adding user data immediately onSuccess
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...admin, token, tokenExpiresIn })
+      );
+
       navigate("/dashboard", { replace: true });
     },
   });

@@ -4,8 +4,10 @@ import {
   getCountFromServer,
   getDoc,
   getDocs,
+  or,
   orderBy,
   query,
+  setDoc,
   where,
 } from "firebase/firestore";
 import { db } from "./firebase_configure";
@@ -18,11 +20,6 @@ const reportsRef = collection(db, "Reports");
 export async function getReports({ filter, sortBy }) {
   let q;
   const reports = [];
-
-  if (!sortBy) {
-    sortBy.field = "date";
-    sortBy.direction = "desc";
-  }
 
   q = query(reportsRef, orderBy(sortBy.field, sortBy.direction));
 
@@ -57,6 +54,47 @@ export async function getReport(id) {
   return report;
 }
 
+export async function sendReportResponse({ email, name, comment }) {
+  const { token } = JSON.parse(localStorage.getItem("user"));
+  try {
+    const res = await fetch(`http://localhost:3000/api/v1/admin/sendEmail`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        email,
+        name,
+        comment,
+      }),
+    });
+
+    const body = await res.json();
+
+    if (res.status === 401 || body.status === "fail") {
+      throw new Error(body.message || "Something went wrong");
+    }
+
+    return { comment };
+  } catch (err) {
+    return err.message;
+  }
+}
+
+export async function updateReportStatus({ reportId, comment }) {
+  const docRef = doc(reportsRef, reportId);
+
+  setDoc(
+    docRef,
+    {
+      isAnswered: true,
+      response: comment,
+      responseDate: new Date(Date.now()),
+    },
+    { merge: true }
+  );
+}
 export async function getInitiatedReportsCountByUserType() {
   const individuals = query(reportsRef, where("userType", "==", "عميل"));
   const carRentals = query(reportsRef, where("userType", "==", "مكتب تأجير"));

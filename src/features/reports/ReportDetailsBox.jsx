@@ -5,6 +5,11 @@ import Status from "../../ui/Status";
 import Tag from "../../ui/Tag";
 import ReportDetailsItem from "./ReportDetailsItem";
 
+const itemColors = {
+  text: "text-gray-400",
+  bgColor: "bg-blue-500",
+};
+
 const userTypeColors = {
   customer: {
     color: "text-blue-50",
@@ -59,6 +64,7 @@ const ReportDetailsBox = ({ report }) => {
               />
             </div>
           }
+          colors={itemColors}
         />
 
         <ReportDetailsItem
@@ -72,17 +78,24 @@ const ReportDetailsBox = ({ report }) => {
               />
             </div>
           }
+          colors={itemColors}
         />
 
-        <ReportDetailsItem field={"Type"} value={typeOfReport} />
+        <ReportDetailsItem
+          field={"Type"}
+          value={typeOfReport}
+          colors={itemColors}
+        />
 
-        <ReportDetailsItem field={"comment"} value={reportComments} />
+        <ReportDetailsItem
+          field={"comment"}
+          value={reportComments}
+          colors={itemColors}
+        />
       </div>
 
-      <footer className="flex justify-end">
-        <p>
-          <span className="font-bold tracking-wider">Initiated on</span> {date}
-        </p>
+      <footer className="flex justify-end gap-1">
+        <span className="font-bold tracking-wider">Initiated on</span> {date}
       </footer>
     </Box>
   );
