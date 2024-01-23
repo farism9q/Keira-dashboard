@@ -11,9 +11,6 @@ import { HiPlayCircle } from "react-icons/hi2";
 import { useUser } from "../users/useUser";
 import CustomSkeleton from "../../ui/CustomSkeleton";
 import { useSendReportResponse } from "./useSendReportResponse";
-import { useParams } from "react-router-dom";
-import { updateReportStatus } from "../../services/apiReports";
-import { useQueryClient } from "@tanstack/react-query";
 
 const ReportResponseTemplate = ({ children, reporterId }) => {
   const { user, isLoading } = useUser(reporterId);

@@ -56,30 +56,27 @@ export async function getReport(id) {
 
 export async function sendReportResponse({ email, name, comment }) {
   const { token } = JSON.parse(localStorage.getItem("user"));
-  try {
-    const res = await fetch(`http://localhost:3000/api/v1/admin/sendEmail`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        email,
-        name,
-        comment,
-      }),
-    });
 
-    const body = await res.json();
+  const res = await fetch(`http://localhost:3000/api/v1/admin/sendEmail`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      email,
+      name,
+      comment,
+    }),
+  });
 
-    if (res.status === 401 || body.status === "fail") {
-      throw new Error(body.message || "Something went wrong");
-    }
+  const body = await res.json();
 
-    return { comment };
-  } catch (err) {
-    return err.message;
+  if (res.status === 401 || body.status === "fail") {
+    throw new Error(body.message || "Something went wrong");
   }
+
+  return { comment };
 }
 
 export async function updateReportStatus({ reportId, comment }) {

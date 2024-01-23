@@ -1,11 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
 import {
   RouterProvider,
   createBrowserRouter,
   Navigate,
 } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+
 import Reports from "./pages/Reports";
 import AppLayout from "./ui/AppLayout";
 import Cars from "./pages/Cars";
@@ -81,6 +82,22 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{ margin: "8px" }}
+          toastOptions={{
+            success: { duration: 3000 },
+            error: { duration: 5000 },
+            style: {
+              fontSize: "20px",
+              maxWidth: "500px",
+              padding: "16px 24px",
+              backgroundColor: "#333",
+              color: "#fff",
+            },
+          }}
+        />
         <DarkModeProvider>
           <RouterProvider router={router}></RouterProvider>
         </DarkModeProvider>

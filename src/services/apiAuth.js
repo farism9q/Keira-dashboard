@@ -1,27 +1,3 @@
-export async function isValidToken() {
-  const user = localStorage.getItem("user");
-
-  if (!user) {
-    throw new Error("Not signed in. Please sign in");
-  }
-
-  const { token } = JSON.parse(user);
-
-  try {
-    const res = await fetch(`http://localhost:3000/api/v1/admin/isValidToken`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-      method: "GET",
-    });
-    const body = await res.json();
-
-    return body.isAuthenticated;
-  } catch (err) {
-    return err.message;
-  }
-}
-
 export async function login({ email, password }) {
   const res = await fetch(`http://localhost:3000/api/v1/admin/login`, {
     method: "POST",
@@ -33,7 +9,16 @@ export async function login({ email, password }) {
       password,
     }),
   });
+
   const body = await res.json();
+
+  if (body.status === "fail") {
+    throw new Error(body.message);
+  }
+
+  if (!res.ok) {
+    throw new Error("Something went wrong when logging in");
+  }
 
   const { data: admin, token, tokenExpiresIn, status } = body;
 
