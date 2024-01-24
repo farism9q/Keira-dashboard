@@ -7,7 +7,6 @@ import {
   TableBody,
 } from "@/components/ui/table";
 import { useCars } from "./useCars";
-import CustomSkeleton from "../../ui/CustomSkeleton";
 import TableSkeleton from "../../ui/skeleton/TableSkeleton";
 
 const CarsTable = () => {
@@ -19,11 +18,13 @@ const CarsTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          {["Image", "Name", "Color", "Rating", "Address"].map((header, i) => (
-            <TableHead className={`${i === 0 && "text-left"}`} key={header}>
-              {header}
-            </TableHead>
-          ))}
+          {["Image", "Name", "Color", "Rating", "Address", ""].map(
+            (header, i) => (
+              <TableHead className={`${i === 0 && "text-left"}`} key={header}>
+                {header}
+              </TableHead>
+            )
+          )}
         </TableRow>
       </TableHeader>
       <TableBody>

@@ -1,18 +1,20 @@
+import { useSearchParams } from "react-router-dom";
+
 import {
   Table,
   TableHeader,
   TableBody,
   TableRow,
   TableHead,
-  TableFooter,
   TableCaption,
 } from "@/components/ui/table";
-import { useUsers } from "./useUsers";
-import UserRow from "./UserRow";
 import TablePagination from "../../ui/TablePagination";
-import { useSearchParams } from "react-router-dom";
+
 import { TOTAL_RESULTS } from "../../utils/constants";
+import { useUsers } from "./useUsers";
+
 import TableSkeleton from "../../ui/skeleton/TableSkeleton";
+import UserRow from "./UserRow";
 
 const UsersTable = () => {
   const { users, isLoading } = useUsers();
@@ -32,13 +34,18 @@ const UsersTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          {["image", "full name", "type", "average Rating", "Member since"].map(
-            (header, i) => (
-              <TableHead className={`${i === 0 && "text-left"}`} key={header}>
-                {header}
-              </TableHead>
-            )
-          )}
+          {[
+            "image",
+            "full name",
+            "type",
+            "average Rating",
+            "Member since",
+            "",
+          ].map((header, i) => (
+            <TableHead className={`${i === 0 && "text-left"}`} key={header}>
+              {header}
+            </TableHead>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody>

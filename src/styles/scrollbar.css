@@ -1,0 +1,19 @@
+.dark {
+  .swiper-scrollbar {
+    background-color: #333;
+  }
+
+  .swiper-scrollbar-drag {
+    background-color: #f4f4f4;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: white;
+  }
+
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    color: #a4a4a4;
+  }
+}

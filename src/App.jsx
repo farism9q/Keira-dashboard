@@ -7,18 +7,21 @@ import {
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
+import { DarkModeProvider } from "./contexts/DarkModeProvider";
+import { CarProvider } from "./contexts/CarProvider";
+
 import Reports from "./pages/Reports";
 import AppLayout from "./ui/AppLayout";
 import Cars from "./pages/Cars";
 import Users from "./pages/Users";
 import Dashboard from "./pages/Dashboard";
 import PageNotFound from "./pages/PageNotFound";
-import { DarkModeProvider } from "./contexts/DarkModeProvider";
 import ReportDetails from "./features/reports/ReportDetails";
 import Bookings from "./pages/Bookings";
 import BookingDetails from "./features/bookings/BookingDetails";
 import Login from "./features/authentication/Login";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
+import CarDetails from "./features/cars/CarDetails";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +67,14 @@ const router = createBrowserRouter([
       {
         path: "/cars",
         element: <Cars />,
+      },
+      {
+        path: "/cars/:carId",
+        element: (
+          <CarProvider>
+            <CarDetails />
+          </CarProvider>
+        ),
       },
     ],
   },

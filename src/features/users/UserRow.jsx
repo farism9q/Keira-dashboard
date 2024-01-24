@@ -1,7 +1,9 @@
 import { TableCell, TableRow } from "@/components/ui/table";
+
+import { useDarkMode } from "../../contexts/DarkModeProvider";
+
 import Image from "../../ui/Image";
 import Tag from "../../ui/Tag";
-import { useDarkMode } from "../../contexts/DarkModeProvider";
 
 const UserRow = ({ user }) => {
   const { darkMode } = useDarkMode();
@@ -35,6 +37,7 @@ const UserRow = ({ user }) => {
 
       <TableCell>{averageRating}</TableCell>
       <TableCell>{memberSince}</TableCell>
+      <TableCell></TableCell>
     </TableRow>
   );
 };
