@@ -1,6 +1,6 @@
-import Heading from "../../ui/Heading";
+import Heading from "./Heading";
 
-const CarBookingInfoItem = ({ header, children }) => {
+const ObjectInfoItem = ({ header, children }) => {
   return (
     <div className="py-5">
       <Heading
@@ -13,4 +13,4 @@ const CarBookingInfoItem = ({ header, children }) => {
   );
 };
 
-export default CarBookingInfoItem;
+export default ObjectInfoItem;

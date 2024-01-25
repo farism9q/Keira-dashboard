@@ -24,12 +24,9 @@ const SwipperCarImages = ({ images }) => {
       onSwiper={swiper => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
     >
-      {images.map(image => (
-        <SwiperSlide
-          className="flex justify-center items-center"
-          key={image.alt}
-        >
-          <img src={image.src} alt={image.alt} />
+      {images.map((image, idx) => (
+        <SwiperSlide className="flex justify-center items-center" key={image}>
+          <img src={image} alt={`Car ${idx}`} />
         </SwiperSlide>
       ))}
     </Swiper>

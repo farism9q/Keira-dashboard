@@ -2,7 +2,7 @@ import { formatCurrency, formateFBDate } from "../../utils/helper";
 import { useCarContext } from "../../contexts/CarProvider";
 
 import CustomSkeleton from "../../ui/CustomSkeleton";
-import CarBookingInfoItem from "./CarBookingInfoItem";
+import ObjectInfoItem from "../../ui/ObjectInfoItem";
 import Heading from "../../ui/Heading";
 import LocationMap from "../../ui/LocationMap";
 
@@ -32,7 +32,7 @@ const CarBookingDetails = () => {
   return (
     <div className="flex flex-col divide-y divide-gray-300 dark:divide-gray-600 space-y-4">
       {/* PRICE */}
-      <CarBookingInfoItem header={"Car price"}>
+      <ObjectInfoItem header={"Car price"}>
         <>
           <span className="font-bold">{formatCurrency(carPrice)}</span> / day
           <p className="text-gray-600 dark:text-gray-300">
@@ -40,25 +40,25 @@ const CarBookingDetails = () => {
             delivery option
           </p>
         </>
-      </CarBookingInfoItem>
+      </ObjectInfoItem>
 
       {/* DATES (STARTS AND ENDS) */}
       <div>
-        <CarBookingInfoItem header={"Trip start"}>
+        <ObjectInfoItem header={"Trip start"}>
           <p>{formateFBDate({ showTime: true, dates: [carDate_start] })[0]}</p>
-        </CarBookingInfoItem>
+        </ObjectInfoItem>
 
-        <CarBookingInfoItem header={"Trip end"}>
+        <ObjectInfoItem header={"Trip end"}>
           <p>{formateFBDate({ showTime: true, dates: [carDate_end] })[0]}</p>
-        </CarBookingInfoItem>
+        </ObjectInfoItem>
       </div>
 
-      <CarBookingInfoItem header={"insurance type"}>
+      <ObjectInfoItem header={"insurance type"}>
         <p>{carInsurace}</p>
-      </CarBookingInfoItem>
+      </ObjectInfoItem>
 
       {/* CAR LOCATION */}
-      <CarBookingInfoItem header={"location"}>
+      <ObjectInfoItem header={"location"}>
         <LocationMap lat={lat} lng={lng} popupContent={"testing"} />
         <div className="grid grid-cols-2 py-2">
           <div className="flex flex-col gap-1">
@@ -79,7 +79,7 @@ const CarBookingDetails = () => {
             <span>{address}</span>
           </div>
         </div>
-      </CarBookingInfoItem>
+      </ObjectInfoItem>
     </div>
   );
 };

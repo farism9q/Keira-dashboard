@@ -5,6 +5,7 @@ import {
   getDocs,
   orderBy,
   query,
+  where,
 } from "firebase/firestore";
 import { db } from "./firebase_configure";
 
@@ -28,7 +29,7 @@ export async function getCars({ sortBy }) {
   querySnapshot.forEach(car => {
     cars.push({ id: car.id, ...car.data() });
   });
-  console.log(cars);
+
   return cars;
 }
 
@@ -55,4 +56,17 @@ export async function getCar(id) {
   };
 
   return car;
+}
+
+export async function getUserCars(userId) {
+  const q = query(carsRef, where("userID", "==", userId));
+  const userCars = [];
+
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach(car => {
+    userCars.push({ id: car.id, ...car.data() });
+  });
+
+  return userCars;
 }

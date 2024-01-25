@@ -18,7 +18,7 @@ const CarOwnerInfoSection = ({ userId }) => {
         <div className="flex flex-col">
           <Heading as="h3" header={user.fName + " " + user.lName} />
           <span>
-            JOINEN on {formateFBDate({ dates: [user.memberSince] })[0]}
+            Joined on {formateFBDate({ dates: [user.memberSince] })[0]}
           </span>
         </div>
       </div>

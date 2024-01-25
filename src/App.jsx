@@ -22,6 +22,7 @@ import BookingDetails from "./features/bookings/BookingDetails";
 import Login from "./features/authentication/Login";
 import ProtectedRoutes from "./ui/ProtectedRoutes";
 import CarDetails from "./features/cars/CarDetails";
+import UserDetails from "./features/users/UserDetails";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users />,
+      },
+      {
+        path: "/users/:userId",
+        element: <UserDetails />,
       },
       {
         path: "/cars",

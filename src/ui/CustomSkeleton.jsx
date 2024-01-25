@@ -8,7 +8,7 @@ const CustomSkeleton = ({
   const SkeletonType = {
     square: `h-[${height}] w-[${width}] rounded-${rounded}`,
     row: "w-full h-[2rem] rounded-md",
-    image: "h-10 w-10 rounded-full",
+    image: "h-full w-full rounded-full",
     headCell: "w-[6rem] h-[3rem] rounded-md",
     rowCell: "w-[6rem] h-[2rem] rounded-full",
     areaChart: "w-full h-[300px] rounded-md",
