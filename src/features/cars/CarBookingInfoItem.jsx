@@ -1,6 +1,6 @@
 import Heading from "../../ui/Heading";
 
-const CarBookingInfoItem = ({ header, content }) => {
+const CarBookingInfoItem = ({ header, children }) => {
   return (
     <div className="py-5">
       <Heading
@@ -8,7 +8,7 @@ const CarBookingInfoItem = ({ header, content }) => {
         header={header}
         color="text-blue-500 dark:text-blue-300"
       />
-      <p>{content}</p>
+      {children}
     </div>
   );
 };
