@@ -11,23 +11,44 @@ import { HiPlayCircle } from "react-icons/hi2";
 import { useUser } from "../users/useUser";
 import CustomSkeleton from "../../ui/CustomSkeleton";
 import { useSendReportResponse } from "./useSendReportResponse";
+import { useChatGPTResponse } from "./useChatGPTResponse";
+import { useState } from "react";
 
-const ReportResponseTemplate = ({ children, reporterId }) => {
+const ReportResponseTemplate = ({ children, reporterId, userClaims }) => {
+  const [adminComment, setAdminComment] = useState("");
+
   const { user, isLoading } = useUser(reporterId);
   const { sendReportResponse, isSending } = useSendReportResponse();
+  const { getChatGPTResponse, isLoading: gptLoading } = useChatGPTResponse();
+
+  if (isLoading) return <CustomSkeleton />;
+
+  const userName = user.fName + " " + user.lName;
 
   function handleSubmit(e) {
     e.preventDefault();
 
     const { email } = user;
-    const name = user.fName + " " + user.lName;
     const comment = e.target.comment.value;
 
     sendReportResponse({
       email,
-      name,
+      name: userName,
       comment,
     });
+  }
+
+  function handleChatGPTResponse(e) {
+    e.preventDefault();
+    console.log(userName);
+    getChatGPTResponse(
+      { userClaims, userName },
+      {
+        onSuccess: gptResponse => {
+          setAdminComment(gptResponse);
+        },
+      }
+    );
   }
 
   return (
@@ -52,22 +73,35 @@ const ReportResponseTemplate = ({ children, reporterId }) => {
             id="comment"
             cols="30"
             rows="5"
-            className="block p-2.5 w-full text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 transition-colors duration-300 focus:outline-none focus:ring-blue-400 focus:border-blue-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className={`${
+              gptLoading && "blur-[2px]"
+            } block p-2.5 w-full text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 transition-colors duration-300 focus:outline-none focus:ring-blue-400 focus:border-blue-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
             placeholder="Type your response here..."
+            disabled={gptLoading}
+            value={adminComment}
+            onChange={e => setAdminComment(e.target.value)}
           ></textarea>
-          {!isSending ? (
-            <Button
-              type="submit"
-              className="bg-green-400 text-black text-base hover:bg-green-500"
-            >
-              Send
+          <div className="grid grid-rows-[1fr_auto] gap-3">
+            {!isSending ? (
+              <Button
+                type="submit"
+                className="bg-green-400 text-black text-base hover:bg-green-500"
+                disabled={gptLoading || isLoading}
+              >
+                Send
+              </Button>
+            ) : (
+              <Button disabled>
+                <HiPlayCircle className="mr-2 h-4 w-4 animate-spin" />
+                Sending...
+              </Button>
+            )}
+            <Button onClick={handleChatGPTResponse} disabled={gptLoading}>
+              {gptLoading
+                ? "Getting GPT response..."
+                : "Ask GPT for a better response"}
             </Button>
-          ) : (
-            <Button disabled>
-              <HiPlayCircle className="mr-2 h-4 w-4 animate-spin" />
-              Sending...
-            </Button>
-          )}
+          </div>
         </form>
       </DialogContent>
     </Dialog>

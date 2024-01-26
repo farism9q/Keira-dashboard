@@ -14,6 +14,7 @@ import { db } from "./firebase_configure";
 import { format } from "date-fns";
 
 import { formateFBDate } from "../utils/helper";
+import { requestFromBackend } from "../utils/backendFetch";
 
 const reportsRef = collection(db, "Reports");
 
@@ -55,19 +56,15 @@ export async function getReport(id) {
 }
 
 export async function sendReportResponse({ email, name, comment }) {
-  const { token } = JSON.parse(localStorage.getItem("user"));
-
-  const res = await fetch(`http://localhost:3000/api/v1/admin/sendEmail`, {
+  const res = await requestFromBackend({
+    endpoint: "admin/sendEmail",
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
+    requireAuth: true,
+    bodyContent: {
       email,
       name,
       comment,
-    }),
+    },
   });
 
   const body = await res.json();
@@ -77,6 +74,27 @@ export async function sendReportResponse({ email, name, comment }) {
   }
 
   return { comment };
+}
+
+export async function getBestResponse({ userClaims, userName }) {
+  const res = await requestFromBackend({
+    endpoint: "openai/generateBestResponse",
+    method: "POST",
+    bodyContent: {
+      userName,
+      promot: userClaims,
+    },
+  });
+
+  const body = await res.json();
+
+  if (res.status === 401 || body.status === "fail") {
+    throw new Error(body.message || "Something went wrong");
+  }
+
+  const chatGPTResponse = body.response.content;
+
+  return chatGPTResponse;
 }
 
 export async function updateReportStatus({ reportId, comment }) {

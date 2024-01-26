@@ -35,7 +35,10 @@ const ReportDetails = () => {
         </Button>
 
         {!report.isAnswered && (
-          <ReportResponseTemplate reporterId={report.userID}>
+          <ReportResponseTemplate
+            reporterId={report.userID}
+            userClaims={report.reportComments}
+          >
             <Button className="bg-green-400 font-light text-black dark:text-slate-50 text-base hover:bg-green-500">
               <HiOutlineEnvelopeOpen className="mr-2 h-4 w-4" /> Send A response
               via Email

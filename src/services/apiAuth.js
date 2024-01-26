@@ -1,13 +1,11 @@
+import { requestFromBackend } from "../utils/backendFetch";
+
 export async function login({ email, password }) {
-  const res = await fetch(`http://localhost:3000/api/v1/admin/login`, {
+  const res = await requestFromBackend({
+    endpoint: "admin/login",
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email,
-      password,
-    }),
+    requireAuth: false,
+    bodyContent: { email, password },
   });
 
   const body = await res.json();
