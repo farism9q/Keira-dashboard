@@ -1,21 +1,27 @@
-import { isAfter } from "date-fns";
+import { isBefore } from "date-fns";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ProtectedRoutes = ({ children }) => {
   const navigate = useNavigate();
+
+  let isAuthenticated = false;
   const userStr = localStorage.getItem("user");
 
   // Check if there is logged in user
   const user = userStr && JSON.parse(userStr);
 
+  if (user) {
+    isAuthenticated = isBefore(Date.now(), user.tokenExpiresIn);
+  }
+
   useEffect(() => {
-    if (!user || isAfter(Date.now(), user.tokenExpiresIn)) {
+    if (!user || !isAuthenticated) {
       navigate("/login");
     }
   }, [navigate, user]);
 
-  return children;
+  if (isAuthenticated) return children;
 };
 
 export default ProtectedRoutes;
