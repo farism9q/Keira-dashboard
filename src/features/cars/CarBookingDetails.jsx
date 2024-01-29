@@ -24,10 +24,11 @@ const CarBookingDetails = () => {
     address,
   } = car;
 
-  const carFinalPrice =
-    deliveryOption === "لا" || carDeliveryPrice === ""
-      ? formatCurrency(+carPrice)
-      : formatCurrency(+carPrice + +carDeliveryPrice);
+  const hasDeliveryOption = deliveryOption !== "لا" || carDeliveryPrice !== "";
+
+  const carFinalPrice = hasDeliveryOption
+    ? formatCurrency(+carPrice)
+    : formatCurrency(+carPrice + +carDeliveryPrice);
 
   return (
     <div className="flex flex-col divide-y divide-gray-300 dark:divide-gray-600 space-y-4">
@@ -35,10 +36,12 @@ const CarBookingDetails = () => {
       <ObjectInfoItem header={"Car price"}>
         <>
           <span className="font-bold">{formatCurrency(carPrice)}</span> / day
-          <p className="text-gray-600 dark:text-gray-300">
-            <span className="font-bold">{carFinalPrice}</span> total price with
-            delivery option
-          </p>
+          {hasDeliveryOption && (
+            <p className="text-gray-600 dark:text-gray-300">
+              <span className="font-bold">{carFinalPrice}</span> total price
+              with delivery option
+            </p>
+          )}
         </>
       </ObjectInfoItem>
 
@@ -59,24 +62,26 @@ const CarBookingDetails = () => {
 
       {/* CAR LOCATION */}
       <ObjectInfoItem header={"location"}>
-        <LocationMap lat={lat} lng={lng} popupContent={"testing"} />
-        <div className="grid grid-cols-2 py-2">
-          <div className="flex flex-col gap-1">
-            <Heading
-              as="h3"
-              header={"city"}
-              color="text-blue-500 dark:text-blue-300"
-            />
-            <span>{carCity}</span>
-          </div>
+        <div className="mt-2">
+          <LocationMap lat={lat} lng={lng} popupContent={"testing"} />
+          <div className="grid grid-cols-2 py-2">
+            <div className="flex flex-col gap-1">
+              <Heading
+                as="h3"
+                header={"city"}
+                color="text-blue-500 dark:text-blue-300"
+              />
+              <span>{carCity}</span>
+            </div>
 
-          <div className="flex flex-col gap-1">
-            <Heading
-              as="h3"
-              header={"address"}
-              color="text-blue-500 dark:text-blue-300"
-            />
-            <span>{address}</span>
+            <div className="flex flex-col gap-1">
+              <Heading
+                as="h3"
+                header={"address"}
+                color="text-blue-500 dark:text-blue-300"
+              />
+              <span>{address}</span>
+            </div>
           </div>
         </div>
       </ObjectInfoItem>

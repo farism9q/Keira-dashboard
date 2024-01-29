@@ -1,4 +1,8 @@
 import { HiMiniStar, HiOutlineShieldCheck } from "react-icons/hi2";
+import { AiOutlineBgColors } from "react-icons/ai";
+import { GiCarDoor } from "react-icons/gi";
+import { IoIosPeople } from "react-icons/io";
+import { TbAutomaticGearbox } from "react-icons/tb";
 
 import { useCarContext } from "../../contexts/CarProvider";
 
@@ -11,32 +15,46 @@ const CarHighLevelInfo = () => {
 
   if (isLoading) return <CustomSkeleton type="row" />;
 
-  const { carRating, carName, carBrand } = car;
+  const {
+    carRating,
+    carName,
+    carBrand,
+    carModel,
+    carType,
+    carDoor,
+    carGearBox,
+    carColor,
+    carPeople,
+  } = car;
 
   return (
-    <div>
-      <Heading header={carName + " " + carBrand} />
-      <span className="flex items-center gap-2 text-[21px] font-semibold">
-        {carRating} <HiMiniStar className="text-blue-400" />
-      </span>
+    <div className="space-y-2">
+      <div>
+        <Heading
+          header={carName + " " + carBrand + " " + carModel + " - " + carType}
+        />
+        <span className="flex items-center gap-2 text-[21px] font-semibold">
+          {carRating} <HiMiniStar className="text-blue-400" />
+        </span>
+      </div>
 
       <GridTextIcon
         data={[
           {
-            icon: <HiOutlineShieldCheck />,
-            text: "GEAR",
+            icon: <GiCarDoor />,
+            text: `${carDoor} doors`,
           },
           {
-            icon: <HiOutlineShieldCheck />,
-            text: "GAS",
+            icon: <IoIosPeople />,
+            text: `${carPeople} people`,
           },
           {
-            icon: <HiOutlineShieldCheck />,
-            text: "PEOPLE",
+            icon: <AiOutlineBgColors />,
+            text: carColor,
           },
           {
-            icon: <HiOutlineShieldCheck />,
-            text: "MARK",
+            icon: <TbAutomaticGearbox />,
+            text: carGearBox,
           },
         ]}
       />

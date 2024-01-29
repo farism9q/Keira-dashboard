@@ -13,7 +13,7 @@ import Image from "../../ui/Image";
 import Heading from "../../ui/Heading";
 import ObjectInfoItem from "../../ui/ObjectInfoItem";
 import Tag from "../../ui/Tag";
-import UserCars from "./UserCars";
+import UserCarsCard from "./UserCarsCard";
 
 const UserDetails = () => {
   const { userId } = useParams();
@@ -59,7 +59,7 @@ const UserDetails = () => {
               <span>
                 <PiDotOutlineFill size={32} />
               </span>
-              Joined {memberSince}
+              Joined on {formateFBDate({ dates: [memberSince] })[0]}
             </p>
           </div>
           <ObjectInfoItem header={"contacts"}>
@@ -97,15 +97,23 @@ const UserDetails = () => {
         {/* SECOND COLUMN */}
         <div className="flex flex-col divide-y w-[75%] divide-gray-300 dark:divide-gray-600 space-y-4">
           <div>
-            <Heading as="h2" header={"DESCRIPTION"} />
+            <Heading
+              as="h2"
+              header={"DESCRIPTION"}
+              color="text-blue-300 dark:text-color-500"
+            />
             <p>{description}</p>
           </div>
           <div className="py-5 space-y-5">
-            <Heading as="h2" header={fName + " " + lName + " cars"} />
+            <Heading
+              as="h2"
+              header={fName + " " + lName + " cars"}
+              color="text-blue-300 dark:text-color-500"
+            />
             {userCarsLoading ? (
               <CustomSkeleton />
             ) : (
-              <UserCars cars={userCars} />
+              <UserCarsCard cars={userCars} userName={fName + " " + lName} />
             )}
           </div>
         </div>

@@ -7,30 +7,35 @@ import "swiper/css/scrollbar";
 
 // Customized scrollbar
 import "../../styles/scrollbar.css";
+import CarCard from "./CarCard";
 
-const SwipperCarImages = ({ images }) => {
+const CarsSwipper = ({ cars }) => {
   return (
     <Swiper
       // install Swiper modules
       modules={[Navigation, Scrollbar, Keyboard]}
       slidesPerView={1}
-      className="w-full h-80"
+      className="w-[35rem] h-80"
       navigation
       keyboard={{
         enabled: true,
       }}
       centeredSlides
-      scrollbar={{ draggable: true }}
       onSwiper={swiper => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
     >
-      {images.map((image, idx) => (
-        <SwiperSlide className="flex justify-center items-center" key={image}>
-          <img src={image} alt={`Car ${idx}`} />
+      {cars.map(car => (
+        <SwiperSlide
+          className="flex justify-center items-center"
+          key={car.carID}
+        >
+          <div className="px-10">
+            <CarCard car={car} />
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>
   );
 };
 
-export default SwipperCarImages;
+export default CarsSwipper;
