@@ -26,7 +26,7 @@ export async function getUsers({ filter, sortBy }) {
 
   q = query(usersRef, orderBy(sortBy.field, sortBy.direction));
 
-  if (filter) {
+  if (Object.keys(filter).length > 0) {
     q = query(
       usersRef,
       where(Object.keys(filter)[0], filter.opStr, Object.values(filter)[0])
