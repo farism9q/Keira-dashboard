@@ -31,7 +31,7 @@ const RecentReports = () => {
   if (isLoading) return <CustomSkeleton />;
 
   return (
-    <Box header={"Recent reports"}>
+    <Box header={"Recent Reports"}>
       <Table>
         <TableHeader>
           <TableRow>

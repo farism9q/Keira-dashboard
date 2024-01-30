@@ -1,3 +1,9 @@
+import { TOTAL_RESULTS } from "../../utils/constants";
+
+import { useSearchParams } from "react-router-dom";
+
+import { useReports } from "./useReports";
+
 import {
   Table,
   TableHeader,
@@ -7,13 +13,23 @@ import {
 } from "@/components/ui/table";
 
 import ReportRow from "./ReportRow";
-import { useReports } from "./useReports";
 import TableSkeleton from "../../ui/skeleton/TableSkeleton";
+import { TableCaption } from "../../components/ui/table";
+import TablePagination from "../../ui/TablePagination";
 
 const ReportsTable = () => {
   const { reports, isLoading } = useReports();
+  const [searchParams] = useSearchParams();
 
   if (isLoading) return <TableSkeleton headersLength={5} rowsLength={10} />;
+
+  const totalPages = Math.ceil(reports.length / TOTAL_RESULTS);
+  const currentPage = +searchParams.get("page") || 1;
+
+  const paginatedReports = reports.slice(
+    currentPage * TOTAL_RESULTS - TOTAL_RESULTS,
+    currentPage * TOTAL_RESULTS
+  );
 
   return (
     <Table>
@@ -25,10 +41,17 @@ const ReportsTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {reports.map(report => (
+        {paginatedReports.map(report => (
           <ReportRow report={report} key={report.id} />
         ))}
       </TableBody>
+      <TableCaption>
+        <TablePagination
+          currentPage={currentPage}
+          next={currentPage < totalPages}
+          previous={currentPage > 1}
+        />
+      </TableCaption>
     </Table>
   );
 };

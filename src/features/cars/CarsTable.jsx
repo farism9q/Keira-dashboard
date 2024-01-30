@@ -1,4 +1,9 @@
-import CarRow from "./CarRow";
+import { TOTAL_RESULTS } from "../../utils/constants";
+
+import { useSearchParams } from "react-router-dom";
+
+import { useCars } from "./useCars";
+
 import {
   TableHead,
   TableHeader,
@@ -6,13 +11,24 @@ import {
   Table,
   TableBody,
 } from "@/components/ui/table";
-import { useCars } from "./useCars";
+import { TableCaption } from "../../components/ui/table";
+import TablePagination from "../../ui/TablePagination";
 import TableSkeleton from "../../ui/skeleton/TableSkeleton";
+import CarRow from "./CarRow";
 
 const CarsTable = () => {
   const { cars, isLoading } = useCars();
+  const [searchParams] = useSearchParams();
 
   if (isLoading) return <TableSkeleton headersLength={5} rowsLength={4} />;
+
+  const totalPages = Math.ceil(cars.length / TOTAL_RESULTS);
+  const currentPage = +searchParams.get("page") || 1;
+
+  const paginatedCars = cars.slice(
+    currentPage * TOTAL_RESULTS - TOTAL_RESULTS,
+    currentPage * TOTAL_RESULTS
+  );
 
   return (
     <Table>
@@ -28,10 +44,17 @@ const CarsTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {cars.map(car => (
+        {paginatedCars.map(car => (
           <CarRow car={car} key={car.id} />
         ))}
       </TableBody>
+      <TableCaption>
+        <TablePagination
+          currentPage={currentPage}
+          next={currentPage < totalPages}
+          previous={currentPage > 1}
+        />
+      </TableCaption>
     </Table>
   );
 };
