@@ -5,7 +5,11 @@ import { useDarkMode } from "../contexts/DarkModeProvider";
 const DarkModeToggle = () => {
   const { darkMode, handleModeClick } = useDarkMode();
   return (
-    <Button variant={"link"} onClick={handleModeClick}>
+    <Button
+      variant={"link"}
+      onClick={handleModeClick}
+      className="hover:text-muted-foreground"
+    >
       {darkMode ? (
         <HiOutlineSun
           size={32}

@@ -8,7 +8,7 @@ const ReportDetailsItem = ({ field, value, colors }) => {
         {field}
       </p>
       <div className="bg-gray-200 opacity-70 py-2 rounded-sm text-center">
-        <p className="text-black text-[18px]">{value}</p>
+        <div className="text-black text-[18px]">{value}</div>
       </div>
     </div>
   );

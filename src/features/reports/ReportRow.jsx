@@ -1,4 +1,4 @@
-import { TableCell, TableRow } from "@/components/ui/table";
+import { TableCell, TableRow } from "../../components/ui/table";
 
 import Status from "../../ui/Status";
 import {
@@ -15,7 +15,7 @@ const ReportRow = ({ report }) => {
   const { id, userID, carID, isAnswered, date } = report;
 
   return (
-    <TableRow>
+    <TableRow role="button" onClick={() => navigate(id)}>
       <TableCell>#{userID}</TableCell>
       <TableCell>#{carID}</TableCell>
       <TableCell>
