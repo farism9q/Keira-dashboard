@@ -13,16 +13,25 @@ import { formateFBDate } from "../utils/helper";
 
 const usersRef = collection(db, "users");
 
-export async function getUsers({ sortBy }) {
+export async function getUsers({ filter, sortBy }) {
   let q;
   const users = [];
 
   if (!sortBy) {
-    sortBy.field = "memberSince";
-    sortBy.direction = "asc";
+    sortBy = {
+      field: "memberSince",
+      direction: "asc",
+    };
   }
 
   q = query(usersRef, orderBy(sortBy.field, sortBy.direction));
+
+  if (filter) {
+    q = query(
+      usersRef,
+      where(Object.keys(filter)[0], filter.opStr, Object.values(filter)[0])
+    );
+  }
 
   const querySnapshot = await getDocs(q);
 

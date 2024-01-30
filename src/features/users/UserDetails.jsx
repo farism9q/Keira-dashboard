@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useDarkMode } from "../../contexts/DarkModeProvider";
 
 import { useUser } from "./useUser";
 import { useUserCars } from "./useUserCars";
@@ -17,6 +18,7 @@ import UserCarsCard from "./UserCarsCard";
 import UserEmptyCars from "./UserEmptyCars";
 
 const UserDetails = () => {
+  const { darkMode } = useDarkMode();
   const { userId } = useParams();
   const { user, isLoading } = useUser(userId);
   const { userCars, isLoading: userCarsLoading } = useUserCars(userId);
@@ -39,6 +41,16 @@ const UserDetails = () => {
 
   const userFullNmae = fName + " " + lName;
 
+  const tagColors = darkMode
+    ? {
+        bgColor: type === "فرد" ? "bg-green-500" : "bg-amber-500",
+        color: type === "فرد" ? "text-green-50" : "text-blue-50",
+      }
+    : {
+        bgColor: type === "فرد" ? "bg-green-600" : "bg-amber-600",
+        color: type === "فرد" ? "text-green-50" : "text-zinc-700",
+      };
+
   return (
     <>
       <Image
@@ -53,7 +65,8 @@ const UserDetails = () => {
               <Heading as="h2" header={userFullNmae} />
               <Tag
                 text={type}
-                bgColor={type === "فرد" ? "bg-green-500" : "bg-orange-500"}
+                bgColor={tagColors.bgColor}
+                textColor={tagColors.color}
               />
             </span>
 
@@ -109,11 +122,13 @@ const UserDetails = () => {
           </div>
           {userCarsLoading && <CustomSkeleton />}
 
-          {!userCars.length && !userCarsLoading && (
+          {/* No cars  */}
+          {!userCarsLoading && userCars.length === 0 && (
             <UserEmptyCars userName={userFullNmae} />
           )}
 
-          {userCars.length && !userCarsLoading && (
+          {/* User cars */}
+          {!userCarsLoading && userCars.length > 0 && (
             <div className="py-5 space-y-5">
               <Heading
                 as="h2"

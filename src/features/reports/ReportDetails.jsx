@@ -1,12 +1,15 @@
-import ReportDetailsBox from "./ReportDetailsBox";
+import { useNavigate } from "react-router-dom";
+
+import { useReport } from "./useReport";
+
 import { Button } from "../../components/ui/button";
 import {
   HiOutlineArrowLeftCircle,
   HiOutlineEnvelopeOpen,
 } from "react-icons/hi2";
-import { useNavigate } from "react-router-dom";
+
+import ReportDetailsBox from "./ReportDetailsBox";
 import ReportResponseTemplate from "./ReportResponseTemplate";
-import { useReport } from "./useReport";
 import CustomSkeleton from "../../ui/CustomSkeleton";
 import AdminReportResponse from "./AdminReportResponse";
 
@@ -39,7 +42,7 @@ const ReportDetails = () => {
             reporterId={report.userID}
             userClaims={report.reportComments}
           >
-            <Button className="bg-green-400 font-light text-black dark:text-slate-50 text-base hover:bg-green-500">
+            <Button className="bg-green-500 font-semibold text-gray-900 dark:text-slate-50 text-base hover:bg-green-400">
               <HiOutlineEnvelopeOpen className="mr-2 h-4 w-4" /> Send A response
               via Email
             </Button>

@@ -1,22 +1,23 @@
-import { TableCell, TableRow } from "../../components/ui/table";
+import { useNavigate } from "react-router-dom";
 
-import Status from "../../ui/Status";
+import { TableCell, TableRow } from "../../components/ui/table";
+import PopoverItem from "../../ui/PopoverItem";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "../../components/ui/popover";
 import { HiEllipsisVertical, HiEye } from "react-icons/hi2";
-import PopoverItem from "../../ui/PopoverItem";
-import { useNavigate } from "react-router-dom";
+
+import Status from "../../ui/Status";
 
 const ReportRow = ({ report }) => {
   const navigate = useNavigate();
   const { id, userID, carID, isAnswered, date } = report;
 
   return (
-    <TableRow role="button" onClick={() => navigate(id)}>
-      <TableCell>#{userID}</TableCell>
+    <TableRow role="button" onClick={() => navigate(`/reports/${id}`)}>
+      <TableCell className="text-ellipsis">#{userID}</TableCell>
       <TableCell>#{carID}</TableCell>
       <TableCell>
         <Status color={isAnswered ? "green" : "red"}>

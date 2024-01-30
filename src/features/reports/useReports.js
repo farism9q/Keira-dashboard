@@ -18,6 +18,7 @@ export function useReports() {
     filterValue && filterValue !== "all"
       ? {
           isAnswered: filterValue === "true",
+          opStr: "==",
         }
       : null;
 

@@ -1,16 +1,21 @@
 import BookingsChart from "./BookingsChart";
 import InitiatedReportCountsChart from "./InitiatedReportCountsBy";
+import RecentReports from "./RecentReports";
+import RecentUsers from "./RecentUsers";
 import UsersTypeChart from "./UsersTypeChart";
 
 const DashboardLayout = () => {
   return (
     <div className="flex flex-col gap-5">
-      <BookingsChart />
-
       <div className="grid grid-cols-2 gap-4">
+        <RecentReports />
+        <RecentUsers />
+
         <InitiatedReportCountsChart />
         <UsersTypeChart />
       </div>
+
+      <BookingsChart />
     </div>
   );
 };

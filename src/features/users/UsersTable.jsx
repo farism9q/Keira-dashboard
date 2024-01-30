@@ -1,19 +1,11 @@
+import { TOTAL_RESULTS } from "../../utils/constants";
+
 import { useSearchParams } from "react-router-dom";
 
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCaption,
-} from "@/components/ui/table";
-import TablePagination from "../../ui/TablePagination";
-
-import { TOTAL_RESULTS } from "../../utils/constants";
 import { useUsers } from "./useUsers";
 
 import TableSkeleton from "../../ui/skeleton/TableSkeleton";
+import UsersTableComp from "../../ui/UsersTable";
 import UserRow from "./UserRow";
 
 const UsersTable = () => {
@@ -31,36 +23,21 @@ const UsersTable = () => {
   );
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          {[
-            "image",
-            "full name",
-            "type",
-            "average Rating",
-            "Member since",
-            "",
-          ].map((header, i) => (
-            <TableHead className={`${i === 0 && "text-left"}`} key={header}>
-              {header}
-            </TableHead>
-          ))}
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {paginatedUsers.map(user => (
-          <UserRow user={user} key={user.id} />
-        ))}
-      </TableBody>
-      <TableCaption>
-        <TablePagination
-          currentPage={currentPage}
-          next={currentPage < totalPages}
-          previous={currentPage > 1}
-        />
-      </TableCaption>
-    </Table>
+    <UsersTableComp
+      headers={[
+        "image",
+        "full name",
+        "type",
+        "average Rating",
+        "Member since",
+        "",
+      ]}
+      render={paginatedUsers.map(user => (
+        <UserRow user={user} key={user.id} />
+      ))}
+      currentPage={currentPage}
+      totalPages={totalPages}
+    />
   );
 };
 

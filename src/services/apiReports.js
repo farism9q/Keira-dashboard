@@ -4,7 +4,6 @@ import {
   getCountFromServer,
   getDoc,
   getDocs,
-  or,
   orderBy,
   query,
   setDoc,
@@ -25,7 +24,10 @@ export async function getReports({ filter, sortBy }) {
   q = query(reportsRef, orderBy(sortBy.field, sortBy.direction));
 
   if (filter) {
-    q = query(q, where("isAnswered", "==", filter.isAnswered));
+    q = query(
+      q,
+      where(Object.keys(filter)[0], filter.opStr, Object.values(filter)[0])
+    );
   }
 
   const querySnapshot = await getDocs(q);
