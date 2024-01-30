@@ -14,6 +14,7 @@ import Heading from "../../ui/Heading";
 import ObjectInfoItem from "../../ui/ObjectInfoItem";
 import Tag from "../../ui/Tag";
 import UserCarsCard from "./UserCarsCard";
+import UserEmptyCars from "./UserEmptyCars";
 
 const UserDetails = () => {
   const { userId } = useParams();
@@ -36,6 +37,8 @@ const UserDetails = () => {
     description,
   } = user;
 
+  const userFullNmae = fName + " " + lName;
+
   return (
     <>
       <Image
@@ -47,7 +50,7 @@ const UserDetails = () => {
         <div className="flex flex-col divide-y divide-gray-300 dark:divide-gray-600 space-y-4">
           <div className="space-y-2">
             <span className="flex items-center gap-4">
-              <Heading as="h2" header={fName + " " + lName} />
+              <Heading as="h2" header={userFullNmae} />
               <Tag
                 text={type}
                 bgColor={type === "فرد" ? "bg-green-500" : "bg-orange-500"}
@@ -104,18 +107,23 @@ const UserDetails = () => {
             />
             <p>{description}</p>
           </div>
-          <div className="py-5 space-y-5">
-            <Heading
-              as="h2"
-              header={fName + " " + lName + " cars"}
-              color="text-blue-300 dark:text-color-500"
-            />
-            {userCarsLoading ? (
-              <CustomSkeleton />
-            ) : (
-              <UserCarsCard cars={userCars} userName={fName + " " + lName} />
-            )}
-          </div>
+          {userCarsLoading && <CustomSkeleton />}
+
+          {!userCars.length && !userCarsLoading && (
+            <UserEmptyCars userName={userFullNmae} />
+          )}
+
+          {userCars.length && !userCarsLoading && (
+            <div className="py-5 space-y-5">
+              <Heading
+                as="h2"
+                header={userFullNmae + " cars"}
+                color="text-blue-300 dark:text-color-500"
+              />
+
+              <UserCarsCard cars={userCars} userName={userFullNmae} />
+            </div>
+          )}
         </div>
       </div>
     </>
