@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-import { useDarkMode } from "../../contexts/DarkModeProvider";
-
 import { HiEllipsisVertical, HiOutlineTrash } from "react-icons/hi2";
 import { TableCell, TableRow } from "../../components/ui/table";
 import {
@@ -15,22 +13,16 @@ import Image from "../../ui/Image";
 import Tag from "../../ui/Tag";
 
 const UserRow = ({ user }) => {
-  const { darkMode } = useDarkMode();
   const navigate = useNavigate();
 
   const { id, fName, lName, profileImage, averageRating, type, memberSince } =
     user;
   const fullName = fName + " " + lName;
 
-  const tagColors = darkMode
-    ? {
-        bgColor: type === "فرد" ? "bg-green-500" : "bg-amber-500",
-        color: type === "فرد" ? "text-green-50" : "text-blue-50",
-      }
-    : {
-        bgColor: type === "فرد" ? "bg-green-600" : "bg-amber-600",
-        color: type === "فرد" ? "text-green-50" : "text-amber-50",
-      };
+  const tagColors = {
+    bgColor: type === "فرد" ? "bg-blue-400" : "bg-amber-600",
+    color: type === "فرد" ? "text-blue-50" : "text-green-50",
+  };
 
   return (
     <TableRow role="button" onClick={() => navigate(`${id}`)}>

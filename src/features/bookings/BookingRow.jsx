@@ -1,13 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 import { TableCell, TableRow } from "../../components/ui/table";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "../../components/ui/popover";
-import Tag from "../../ui/Tag";
-import { HiEllipsisVertical, HiOutlineEye } from "react-icons/hi2";
 import PopoverItem from "../../ui/PopoverItem";
-import { useNavigate } from "react-router-dom";
+import { HiEllipsisVertical, HiOutlineEye } from "react-icons/hi2";
+import Tag from "../../ui/Tag";
 
 const BookingRow = ({ booking }) => {
   const navigate = useNavigate();
@@ -25,11 +26,11 @@ const BookingRow = ({ booking }) => {
     bgColor:
       bookingStatus === "تم تسليم السيارة للعميل"
         ? "bg-green-500"
-        : "bg-blue-500",
+        : "bg-red-600",
     color:
       bookingStatus === "تم تسليم السيارة للعميل"
         ? "text-green-50"
-        : "text-blue-50",
+        : "text-red-50",
   };
 
   return (

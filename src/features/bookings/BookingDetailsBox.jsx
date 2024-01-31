@@ -1,6 +1,9 @@
 import { differenceInDays } from "date-fns";
 import { format } from "date-fns";
 
+import { formatCurrency } from "../../utils/helper";
+import { BOOKING_CHARGE } from "../../utils/constants";
+
 import {
   HiOutlineCheckCircle,
   HiOutlineCurrencyDollar,
@@ -9,8 +12,6 @@ import {
 } from "react-icons/hi2";
 
 import Heading from "../../ui/Heading";
-import { formatCurrency } from "../../utils/helper";
-import { FEE_PERCENTAGE } from "../../utils/constants";
 import Tag from "../../ui/Tag";
 
 const BookingDetailsBox = ({
@@ -25,7 +26,7 @@ const BookingDetailsBox = ({
     bookingDate,
   },
 }) => {
-  const feesPrice = FEE_PERCENTAGE * carPrice;
+  const feesPrice = BOOKING_CHARGE * carPrice;
   const totalPrice =
     Number(carPrice) +
     (deliveryPrice !== "لايوجد" ? +deliveryPrice : 0) +

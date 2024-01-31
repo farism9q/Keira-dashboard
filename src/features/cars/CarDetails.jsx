@@ -7,6 +7,7 @@ import CustomSkeleton from "../../ui/CustomSkeleton";
 
 const CarDetails = () => {
   const { car, isLoading } = useCarContext();
+
   if (isLoading) return <CustomSkeleton />;
 
   return (

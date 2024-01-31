@@ -11,9 +11,7 @@ import GridTextIcon from "../../ui/GridTextIcon";
 import CustomSkeleton from "../../ui/CustomSkeleton";
 
 const CarHighLevelInfo = () => {
-  const { car, isLoading } = useCarContext();
-
-  if (isLoading) return <CustomSkeleton type="row" />;
+  const { car } = useCarContext();
 
   const {
     carRating,

@@ -1,16 +1,16 @@
 import { formateFBDate } from "../../utils/helper";
 import { useUser } from "../users/useUser";
 
-import CustomSkeleton from "../../ui/CustomSkeleton";
 import Heading from "../../ui/Heading";
 import Image from "../../ui/Image";
 import InfoSection from "../../ui/InfoSection";
 import { Link } from "react-router-dom";
+import UserInfoSkeleton from "../../ui/skeleton/UserInfoSkeleton";
 
 const CarOwnerInfoSection = ({ userId }) => {
   const { user, isLoading } = useUser(userId);
 
-  if (isLoading) return <CustomSkeleton type="image" />;
+  if (isLoading) return <UserInfoSkeleton />;
 
   const { fName, lName, memberSince, profileImage } = user;
 

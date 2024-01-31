@@ -13,11 +13,11 @@ const itemColors = {
 const userTypeColors = {
   customer: {
     color: "text-blue-50",
-    bgColor: "bg-blue-600",
+    bgColor: "bg-blue-400",
   },
   carRental: {
-    color: "text-green-50",
-    bgColor: "bg-green-600",
+    color: "text-amber-50",
+    bgColor: "bg-amber-600",
   },
 };
 

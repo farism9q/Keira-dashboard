@@ -48,7 +48,7 @@ const UserDetails = () => {
       }
     : {
         bgColor: type === "فرد" ? "bg-green-600" : "bg-amber-600",
-        color: type === "فرد" ? "text-green-50" : "text-zinc-700",
+        color: type === "فرد" ? "text-green-50" : "text-amber-50",
       };
 
   return (

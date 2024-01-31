@@ -1,15 +1,12 @@
 import { formatCurrency, formateFBDate } from "../../utils/helper";
 import { useCarContext } from "../../contexts/CarProvider";
 
-import CustomSkeleton from "../../ui/CustomSkeleton";
 import ObjectInfoItem from "../../ui/ObjectInfoItem";
 import Heading from "../../ui/Heading";
 import LocationMap from "../../ui/LocationMap";
 
 const CarBookingDetails = () => {
-  const { car, isLoading } = useCarContext();
-
-  if (isLoading) return <CustomSkeleton type="row" />;
+  const { car } = useCarContext();
 
   const {
     carDeliveryPrice,

@@ -7,6 +7,7 @@ import Box from "../../ui/Box";
 import CustomSkeleton from "../../ui/CustomSkeleton";
 import UsersTableComp from "../../ui/UsersTable";
 import DashboardUserRow from "./DashboardUserRow";
+import Empty from "../../ui/Empty";
 
 const RecentUsers = () => {
   const [searchParams] = useSearchParams();
@@ -24,14 +25,20 @@ const RecentUsers = () => {
 
   return (
     <Box header={"Recent Registered Users"}>
-      <UsersTableComp
-        headers={["Image", "user name", "type", "Joined on"]}
-        totalPages={totalPages}
-        currentPage={currentPage}
-        render={paginatedUsers.map(user => (
-          <DashboardUserRow user={user} />
-        ))}
-      />
+      {paginatedUsers.length > 0 ? (
+        <UsersTableComp
+          headers={["Image", "user name", "type", "Joined on"]}
+          totalPages={totalPages}
+          currentPage={currentPage}
+          render={paginatedUsers.map(user => (
+            <DashboardUserRow user={user} />
+          ))}
+        />
+      ) : (
+        <Empty>
+          <p>No users</p>
+        </Empty>
+      )}
     </Box>
   );
 };

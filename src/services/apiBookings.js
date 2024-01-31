@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import { db } from "./firebase_configure";
 import { formateFBDate } from "../utils/helper";
+import { subDays } from "date-fns";
 
 const bookingsRef = collection(db, "bookings");
 
@@ -89,7 +90,35 @@ export async function getBookingsAfterDate(date) {
     });
   });
 
-  console.log(bookings);
+  return bookings;
+}
+
+export async function getTodayBookings() {
+  const q = query(
+    bookingsRef,
+    where("bookingDate", ">=", subDays(new Date(Date.now()), 1))
+  );
+
+  const bookings = [];
+
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach(booking => {
+    const bookingDates = formateFBDate({
+      dates: [booking.data().bookingTimeSD, booking.data().bookingTimeED],
+    });
+    const bookingCreatedAt = formateFBDate({
+      showTime: true,
+      dates: [booking.data().bookingDate],
+    });
+
+    const formattedDates = {
+      bookingTimeSD: bookingDates[0],
+      bookingTimeED: bookingDates[1],
+      bookingDate: bookingCreatedAt[0],
+    };
+    bookings.push({ ...booking.data(), ...formattedDates });
+  });
 
   return bookings;
 }

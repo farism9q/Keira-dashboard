@@ -1,12 +1,9 @@
 import { useCarContext } from "../../contexts/CarProvider";
 
 import InfoSection from "../../ui/InfoSection";
-import CustomSkeleton from "../../ui/CustomSkeleton";
 
 const CarDescFeatureSection = () => {
-  const { car, isLoading } = useCarContext();
-
-  if (isLoading) return <CustomSkeleton type="row" />;
+  const { car } = useCarContext();
 
   const { carDescription } = car;
   return (
