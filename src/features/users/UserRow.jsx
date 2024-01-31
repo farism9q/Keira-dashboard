@@ -11,6 +11,7 @@ import PopoverItem from "../../ui/PopoverItem";
 
 import Image from "../../ui/Image";
 import Tag from "../../ui/Tag";
+import ConfirmModal from "../../ui/ConfirmModal";
 
 const UserRow = ({ user }) => {
   const navigate = useNavigate();
@@ -47,14 +48,21 @@ const UserRow = ({ user }) => {
               e.stopPropagation();
             }}
           >
-            <HiEllipsisVertical />
+            <HiEllipsisVertical size={28} />
           </PopoverTrigger>
 
           <PopoverContent className="w-40">
-            <PopoverItem confirmModal={true} onClick={() => {}}>
-              <HiOutlineTrash />
-              Delete
-            </PopoverItem>
+            <ConfirmModal
+              value={id}
+              onConfirm={() => {
+                console.log("deleted");
+              }}
+            >
+              <div role="button" className="flex items-center gap-2">
+                <HiOutlineTrash />
+                Delete
+              </div>
+            </ConfirmModal>
           </PopoverContent>
         </Popover>
       </TableCell>

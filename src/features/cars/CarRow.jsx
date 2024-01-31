@@ -9,7 +9,7 @@ import {
 import { HiEllipsisVertical, HiOutlineTrash } from "react-icons/hi2";
 
 import Image from "../../ui/Image";
-import PopoverItem from "../../ui/PopoverItem";
+import ConfirmModal from "../../ui/ConfirmModal";
 
 const CarRow = ({ car }) => {
   const navigate = useNavigate();
@@ -31,14 +31,21 @@ const CarRow = ({ car }) => {
                 e.stopPropagation();
               }}
             >
-              <HiEllipsisVertical />
+              <HiEllipsisVertical size={28} />
             </PopoverTrigger>
 
             <PopoverContent className="w-40">
-              <PopoverItem confirmModal={true} onClick={() => {}}>
-                <HiOutlineTrash />
-                Delete
-              </PopoverItem>
+              <ConfirmModal
+                value={carID}
+                onConfirm={() => {
+                  console.log("deleted");
+                }}
+              >
+                <div role="button" className="flex items-center gap-2">
+                  <HiOutlineTrash />
+                  Delete
+                </div>
+              </ConfirmModal>
             </PopoverContent>
           </Popover>
         }

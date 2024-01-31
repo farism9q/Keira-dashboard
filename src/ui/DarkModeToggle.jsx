@@ -13,10 +13,13 @@ const DarkModeToggle = () => {
       {darkMode ? (
         <HiOutlineSun
           size={32}
-          className="dark:text-blue-300  dark:hover:text-blue-400"
+          className="text-blue-300  hover:text-blue-400"
         />
       ) : (
-        <HiOutlineMoon size={32} />
+        <HiOutlineMoon
+          className="text-blue-500 hover:text-blue-500/70"
+          size={32}
+        />
       )}
     </Button>
   );
