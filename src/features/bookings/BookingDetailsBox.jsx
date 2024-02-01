@@ -40,7 +40,7 @@ const BookingDetailsBox = ({
   return (
     <div className="rounded-md bg-white dark:bg-gray-600/50">
       <div className="flex items-center justify-between rounded-t-md bg-blue-600 py-8 px-10 text-white font-semibold">
-        <Heading as="h2" header={headerText} />
+        <Heading as="h2" header={headerText} color="text-white" />
 
         <p className="text-slate-300 text-2xl">
           {bookingTimeSD} &mdash; {bookingTimeED}

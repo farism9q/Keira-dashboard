@@ -1,3 +1,9 @@
+import { TOTAL_RESULTS } from "../../utils/constants";
+
+import { useSearchParams } from "react-router-dom";
+
+import { useBookings } from "./useBookings";
+
 import {
   Table,
   TableHeader,
@@ -7,10 +13,7 @@ import {
   TableCaption,
 } from "../../components/ui/table";
 import TablePagination from "../../ui/TablePagination";
-import { useSearchParams } from "react-router-dom";
-import { TOTAL_RESULTS } from "../../utils/constants";
 import TableSkeleton from "../../ui/skeleton/TableSkeleton";
-import { useBookings } from "./useBookings";
 import BookingRow from "./BookingRow";
 
 const headers = [
@@ -20,7 +23,6 @@ const headers = [
   "Status",
   "start date",
   "end date",
-  "",
 ];
 
 const BookingsTable = () => {

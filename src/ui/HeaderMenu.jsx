@@ -18,7 +18,10 @@ const HeaderMenu = () => {
           className="dark:text-blue-300  dark:hover:text-blue-400 hover:text-muted-foreground"
           onClick={handleLogout}
         >
-          <HiArrowLeftOnRectangle size={32} />
+          <HiArrowLeftOnRectangle
+            className="text-blue-500 hover:text-blue-500/70 dark:text-blue-300 dark:hover:text-blue-400"
+            size={32}
+          />
         </Button>
       </li>
       <li>
@@ -26,11 +29,11 @@ const HeaderMenu = () => {
       </li>
 
       <li>
-        <Button
-          variant={"link"}
-          className="dark:text-blue-300 dark:hover:text-blue-400 hover:text-muted-foreground"
-        >
-          <HiOutlineUserPlus size={32} />
+        <Button variant={"link"}>
+          <HiOutlineUserPlus
+            className="text-blue-500 hover:text-blue-500/70 dark:text-blue-300 dark:hover:text-blue-400"
+            size={32}
+          />
         </Button>
       </li>
     </ul>

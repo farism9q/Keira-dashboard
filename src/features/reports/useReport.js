@@ -7,7 +7,7 @@ export function useReport() {
 
   const { data: report, isLoading } = useQuery({
     queryFn: () => getReport(reportId),
-    queryKey: ["report", reportId],
+    queryKey: [`report-${reportId}`],
   });
 
   return { report, isLoading };

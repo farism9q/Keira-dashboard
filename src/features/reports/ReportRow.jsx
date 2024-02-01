@@ -1,13 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
 import { TableCell, TableRow } from "../../components/ui/table";
-import PopoverItem from "../../ui/PopoverItem";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../components/ui/popover";
-import { HiEllipsisVertical, HiEye } from "react-icons/hi2";
 
 import Status from "../../ui/Status";
 
@@ -25,18 +18,6 @@ const ReportRow = ({ report }) => {
         </Status>
       </TableCell>
       <TableCell>{date}</TableCell>
-      <TableCell>
-        <Popover>
-          <PopoverTrigger>
-            <HiEllipsisVertical />
-          </PopoverTrigger>
-          <PopoverContent className="w-40">
-            <PopoverItem onClick={() => navigate(`${id}`)}>
-              <HiEye /> Show details
-            </PopoverItem>
-          </PopoverContent>
-        </Popover>
-      </TableCell>
     </TableRow>
   );
 };

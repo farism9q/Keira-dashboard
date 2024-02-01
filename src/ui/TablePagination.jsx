@@ -6,26 +6,27 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from "../components/ui/pagination";
 import { useSearchParams } from "react-router-dom";
 
 const TablePagination = ({
   next = true,
   previous = false,
   currentPage = 1,
+  pageQueryName,
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   function nextPage() {
     if (!next) return;
-    searchParams.set("page", currentPage + 1);
+    searchParams.set(pageQueryName, currentPage + 1);
 
     setSearchParams(searchParams);
   }
 
   function prevPage() {
     if (!previous) return;
-    searchParams.set("page", currentPage - 1);
+    searchParams.set(pageQueryName, currentPage - 1);
 
     setSearchParams(searchParams);
   }

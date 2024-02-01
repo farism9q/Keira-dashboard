@@ -20,7 +20,7 @@ export function useSendReportResponse() {
       navigate(-1);
 
       queryClient.invalidateQueries({
-        queryKey: ["reports", "report", reportId],
+        queryKey: ["reports", `report-${reportId}`],
       });
 
       toast.success("Sent successfully");

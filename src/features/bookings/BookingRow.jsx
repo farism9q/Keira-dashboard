@@ -1,13 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
 import { TableCell, TableRow } from "../../components/ui/table";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../components/ui/popover";
-import PopoverItem from "../../ui/PopoverItem";
-import { HiEllipsisVertical, HiOutlineEye } from "react-icons/hi2";
 import Tag from "../../ui/Tag";
 
 const BookingRow = ({ booking }) => {
@@ -34,7 +27,7 @@ const BookingRow = ({ booking }) => {
   };
 
   return (
-    <TableRow className="group" onClick={e => e.stopPropagation()}>
+    <TableRow role="button" onClick={() => navigate(`/bookings/${bookingID}`)}>
       <TableCell>#{bookingID}</TableCell>
       <TableCell>#{carID}</TableCell>
       <TableCell>#{userID}</TableCell>
@@ -47,22 +40,6 @@ const BookingRow = ({ booking }) => {
       </TableCell>
       <TableCell>{bookingTimeSD}</TableCell>
       <TableCell>{bookingTimeED}</TableCell>
-      <TableCell>
-        {
-          <Popover>
-            <PopoverTrigger>
-              <HiEllipsisVertical />
-            </PopoverTrigger>
-
-            <PopoverContent className="w-40">
-              <PopoverItem onClick={() => navigate(`${bookingID}`)}>
-                <HiOutlineEye />
-                Show details
-              </PopoverItem>
-            </PopoverContent>
-          </Popover>
-        }
-      </TableCell>
     </TableRow>
   );
 };

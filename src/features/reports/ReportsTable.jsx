@@ -10,11 +10,10 @@ import {
   TableBody,
   TableRow,
   TableHead,
-} from "@/components/ui/table";
-
+} from "../../components/ui/table";
+import { TableCaption } from "../../components/ui/table";
 import ReportRow from "./ReportRow";
 import TableSkeleton from "../../ui/skeleton/TableSkeleton";
-import { TableCaption } from "../../components/ui/table";
 import TablePagination from "../../ui/TablePagination";
 
 const ReportsTable = () => {
@@ -35,7 +34,7 @@ const ReportsTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          {["User ID", "Car ID", "Status", "Date", ""].map(header => (
+          {["User ID", "Car ID", "Status", "Date"].map(header => (
             <TableHead key={header}>{header}</TableHead>
           ))}
         </TableRow>

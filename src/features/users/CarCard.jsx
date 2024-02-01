@@ -16,7 +16,7 @@ const CarCard = ({ car }) => {
   const navigate = useNavigate();
 
   return (
-    <Card role="button" onClick={() => navigate(`/cars/${car.carID}`)}>
+    <Card role="button" onClick={() => navigate(`/cars/${car.id}`)}>
       <CardHeader className="p-0">
         <img src={car.images[0]} alt={car.name} className="h-48" />
       </CardHeader>

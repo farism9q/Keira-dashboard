@@ -5,7 +5,7 @@ const BookingHeader = ({ bookingID, strDate, endDate, bookingStatus }) => {
   const tagColors = {
     bgColor:
       bookingStatus === "تم تسليم السيارة للعميل"
-        ? "bg-green-500"
+        ? "bg-green-500/80"
         : "bg-blue-500",
     color:
       bookingStatus === "تم تسليم السيارة للعميل"
@@ -15,7 +15,10 @@ const BookingHeader = ({ bookingID, strDate, endDate, bookingStatus }) => {
 
   return (
     <header className="flex gap-6 items-center uppercase">
-      <Heading header={`Booking #${bookingID}`} />
+      <Heading
+        header={`Booking #${bookingID}`}
+        color="text-black dark:text-white"
+      />
       <Tag
         text={bookingStatus}
         textColor={tagColors["color"]}

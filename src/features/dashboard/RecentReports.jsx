@@ -1,16 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { DASHBOARD_TOTAL_RESULTS } from "../../utils/constants";
+
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { useRecentReports } from "./useRecentReports";
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../../components/ui/table";
-
+import { TableCell, TableRow } from "../../components/ui/table";
+import DashboardTable from "../../ui/DashboardTable";
 import Box from "../../ui/Box";
 import CustomSkeleton from "../../ui/CustomSkeleton";
 import Status from "../../ui/Status";
@@ -25,23 +20,29 @@ function truncate(text) {
   }
 }
 const RecentReports = () => {
+  const [searchParams] = useSearchParams();
   const { recentReports, isLoading } = useRecentReports();
   const navigate = useNavigate();
 
   if (isLoading) return <CustomSkeleton />;
 
+  const totalPages = Math.ceil(recentReports.length / DASHBOARD_TOTAL_RESULTS);
+  const currentPage = +searchParams.get("reportsPage") || 1;
+
+  const paginatedReports = recentReports.slice(
+    currentPage * DASHBOARD_TOTAL_RESULTS - DASHBOARD_TOTAL_RESULTS,
+    currentPage * DASHBOARD_TOTAL_RESULTS
+  );
+
   return (
     <Box header={"Recent Reports"}>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            {["User ID", "Car ID", "Status", "Date"].map(header => (
-              <TableHead key={header}>{header}</TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {recentReports.map(report => (
+      {paginatedReports.length > 0 ? (
+        <DashboardTable
+          headers={["User id", "Car id", "Status", "Initiated on"]}
+          totalPages={totalPages}
+          currentPage={currentPage}
+          pageQueryName={"reportsPage"}
+          render={paginatedReports.map(report => (
             <TableRow
               role="button"
               onClick={() => navigate(`/reports/${report.id}`)}
@@ -57,8 +58,12 @@ const RecentReports = () => {
               <TableCell>{report.date}</TableCell>
             </TableRow>
           ))}
-        </TableBody>
-      </Table>
+        />
+      ) : (
+        <Empty>
+          <p>No users</p>
+        </Empty>
+      )}
     </Box>
   );
 };
