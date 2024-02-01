@@ -7,14 +7,15 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "../../components/ui/popover";
-import PopoverItem from "../../ui/PopoverItem";
 
 import Image from "../../ui/Image";
 import Tag from "../../ui/Tag";
 import ConfirmModal from "../../ui/ConfirmModal";
+import { useDeleteUser } from "./useDeleteUser";
 
 const UserRow = ({ user }) => {
   const navigate = useNavigate();
+  const { deleteUser } = useDeleteUser();
 
   const { id, fName, lName, profileImage, averageRating, type, memberSince } =
     user;
@@ -52,12 +53,7 @@ const UserRow = ({ user }) => {
           </PopoverTrigger>
 
           <PopoverContent className="w-40">
-            <ConfirmModal
-              value={id}
-              onConfirm={() => {
-                console.log("deleted");
-              }}
-            >
+            <ConfirmModal value={id} onConfirm={() => deleteUser(id)}>
               <div role="button" className="flex items-center gap-2">
                 <HiOutlineTrash />
                 Delete

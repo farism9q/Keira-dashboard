@@ -7,7 +7,7 @@ export function useCar() {
 
   const { data: car, isLoading } = useQuery({
     queryFn: () => getCar(carId),
-    queryKey: ["car", carId],
+    queryKey: [`car-${carId}`],
   });
 
   return { car, isLoading };

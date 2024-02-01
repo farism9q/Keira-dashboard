@@ -7,10 +7,11 @@ import {
   where,
   doc,
   getDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "./firebase_configure";
 import { formateFBDate } from "../utils/helper";
-
+import { deleteUser as deleteUserApi } from "./apiAuth";
 const usersRef = collection(db, "users");
 
 export async function getUsers({ filter, sortBy }) {
@@ -53,6 +54,13 @@ export async function getUser(id) {
   const data = await getDoc(docRef);
 
   return data.data();
+}
+
+export async function deleteUser(id) {
+  await deleteUserApi(id);
+
+  const document = doc(usersRef, id);
+  await deleteDoc(document);
 }
 
 // Get the numbers of each users type in Keira

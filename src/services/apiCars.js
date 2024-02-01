@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -10,6 +11,7 @@ import {
 import { db } from "./firebase_configure";
 
 import { formateFBDate } from "../utils/helper";
+import { checkRole } from "./apiAuth";
 
 const carsRef = collection(db, "cars");
 
@@ -69,4 +71,15 @@ export async function getUserCars(userId) {
   });
 
   return userCars;
+}
+
+export async function deleteCar(id) {
+  const { status, message } = await checkRole();
+
+  if (status !== "success") {
+    throw new Error(message || "Something went worng");
+  }
+
+  const document = doc(carsRef, id);
+  await deleteDoc(document);
 }

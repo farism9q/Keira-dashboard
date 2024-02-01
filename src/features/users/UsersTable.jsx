@@ -5,8 +5,8 @@ import { useSearchParams } from "react-router-dom";
 import { useUsers } from "./useUsers";
 
 import TableSkeleton from "../../ui/skeleton/TableSkeleton";
-import UsersTableComp from "../../ui/UsersTable";
 import UserRow from "./UserRow";
+import DashboardTable from "../../ui/DashboardTable";
 
 const UsersTable = () => {
   const { users, isLoading } = useUsers();
@@ -23,7 +23,7 @@ const UsersTable = () => {
   );
 
   return (
-    <UsersTableComp
+    <DashboardTable
       headers={[
         "image",
         "full name",
@@ -37,6 +37,7 @@ const UsersTable = () => {
       ))}
       currentPage={currentPage}
       totalPages={totalPages}
+      pageQueryName={"page"}
     />
   );
 };
