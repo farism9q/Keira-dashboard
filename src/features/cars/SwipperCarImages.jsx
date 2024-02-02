@@ -21,8 +21,6 @@ const SwipperCarImages = ({ images }) => {
       }}
       centeredSlides
       scrollbar={{ draggable: true }}
-      onSwiper={swiper => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
     >
       {images.map((image, idx) => (
         <SwiperSlide className="flex justify-center items-center" key={image}>

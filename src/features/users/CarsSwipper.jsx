@@ -21,8 +21,6 @@ const CarsSwipper = ({ cars }) => {
         enabled: true,
       }}
       centeredSlides
-      onSwiper={swiper => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
     >
       {cars.map(car => (
         <SwiperSlide

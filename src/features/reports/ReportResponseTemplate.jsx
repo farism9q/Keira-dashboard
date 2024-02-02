@@ -1,3 +1,9 @@
+import { useState } from "react";
+
+import { useUser } from "../users/useUser";
+import { useSendReportResponse } from "./useSendReportResponse";
+import { useChatGPTResponse } from "./useChatGPTResponse";
+
 import { Button } from "../../components/ui/button";
 import {
   Dialog,
@@ -7,12 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { HiPlayCircle } from "react-icons/hi2";
-
-import { useUser } from "../users/useUser";
 import CustomSkeleton from "../../ui/CustomSkeleton";
-import { useSendReportResponse } from "./useSendReportResponse";
-import { useChatGPTResponse } from "./useChatGPTResponse";
-import { useState } from "react";
 
 const ReportResponseTemplate = ({ children, reporterId, userClaims }) => {
   const [adminComment, setAdminComment] = useState("");
@@ -40,7 +41,7 @@ const ReportResponseTemplate = ({ children, reporterId, userClaims }) => {
 
   function handleChatGPTResponse(e) {
     e.preventDefault();
-    console.log(userName);
+
     getChatGPTResponse(
       { userClaims, userName },
       {

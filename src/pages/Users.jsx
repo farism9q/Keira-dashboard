@@ -10,7 +10,7 @@ const Users = () => {
       <Row>
         <Heading header={"All users"} />
 
-        <div className="flex gap-2">
+        <Row className="flex gap-2">
           <Filter
             field={"type"}
             values={[
@@ -42,7 +42,7 @@ const Users = () => {
               },
             ]}
           />
-        </div>
+        </Row>
       </Row>
       <UsersTable />
     </>

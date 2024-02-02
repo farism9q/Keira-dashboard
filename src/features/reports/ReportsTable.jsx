@@ -49,6 +49,7 @@ const ReportsTable = () => {
           currentPage={currentPage}
           next={currentPage < totalPages}
           previous={currentPage > 1}
+          pageQueryName={"page"}
         />
       </TableCaption>
     </Table>

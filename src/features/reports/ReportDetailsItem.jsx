@@ -1,5 +1,4 @@
 const ReportDetailsItem = ({ field, value, colors }) => {
-  console.log(colors["bgColor"]);
   return (
     <div className="ml-5 items-center">
       <p

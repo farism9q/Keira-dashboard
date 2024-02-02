@@ -13,6 +13,7 @@ import {
 
 import Heading from "../../ui/Heading";
 import Tag from "../../ui/Tag";
+import { useNavigate } from "react-router-dom";
 
 const BookingDetailsBox = ({
   booking: {
@@ -26,6 +27,7 @@ const BookingDetailsBox = ({
     bookingDate,
   },
 }) => {
+  const navigate = useNavigate();
   const feesPrice = BOOKING_CHARGE * carPrice;
   const totalPrice =
     Number(carPrice) +
@@ -49,7 +51,10 @@ const BookingDetailsBox = ({
       <div className="flex flex-col p-6 space-y-10 text-[28px] text-black dark:text-white">
         <div className="flex items-center gap-4">
           <div className="flex items-center justify-center gap-2">
-            <HiOutlineInformationCircle className="cursor-pointer text-blue-600 dark:text-blue-400" />
+            <HiOutlineInformationCircle
+              className="cursor-pointer text-blue-600 dark:text-blue-400"
+              onClick={() => navigate(`/cars/${carID}`)}
+            />
             <p>
               Car ID{" "}
               <span className="text-gray-500 dark:text-muted-foreground">
@@ -59,7 +64,10 @@ const BookingDetailsBox = ({
             </p>
           </div>
           <div className="flex items-center justify-center gap-2">
-            <HiOutlineUserCircle className="cursor-pointer text-blue-600 dark:text-blue-400" />
+            <HiOutlineUserCircle
+              className="cursor-pointer text-blue-600 dark:text-blue-400"
+              onClick={() => navigate(`/users/${userID}`)}
+            />
             <p>
               User ID
               <span className="text-gray-500 dark:text-muted-foreground">
