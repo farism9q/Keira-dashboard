@@ -23,6 +23,32 @@ export async function login({ email, password }) {
   return { ...admin, token, tokenExpiresIn, status };
 }
 
+export async function signUp({ name, email, password, role }) {
+  const res = await requestFromBackend({
+    endpoint: "admin/signup",
+    method: "POST",
+    requireAuth: true,
+    bodyContent: {
+      name,
+      email,
+      password,
+      role,
+    },
+  });
+
+  const body = await res.json();
+
+  if (body.status === "fail") {
+    throw new Error(body.message);
+  }
+
+  if (!res.ok) {
+    throw new Error("Something went wrong when creating a new admin");
+  }
+
+  return body;
+}
+
 export async function checkRole() {
   const res = await requestFromBackend({
     method: "GET",
@@ -42,8 +68,10 @@ export async function deleteUser(id) {
     requireAuth: true,
   });
 
-  if (!res.ok) {
-    throw new Error("Something went wrong");
+  const body = await res.json();
+
+  if (body.status !== "success") {
+    throw new Error(body.message || "Something went wrong");
   }
 
   // Deleting a user returns null

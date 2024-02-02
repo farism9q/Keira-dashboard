@@ -20,8 +20,6 @@ export async function requestFromBackend({
     option.body = JSON.stringify(bodyContent);
   }
 
-  console.log(option);
-
   const res = await fetch(`http://localhost:3000/api/v1/${endpoint}`, option);
 
   return res;

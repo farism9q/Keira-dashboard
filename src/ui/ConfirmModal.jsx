@@ -32,7 +32,7 @@ const ConfirmModal = ({ children, value, onConfirm }) => {
                 <span>Are you sure ?</span>
               </p>
             </DialogTitle>
-            <DialogDescription>This action can not be undo.</DialogDescription>
+            <DialogDescription>This action is irreversible</DialogDescription>
           </DialogHeader>
           <div className="mx-4 my-6 space-y-2">
             <p className="font-semibold text-sm">Type "{value}" to delete</p>
