@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 export function useUsers() {
   const [searchParams] = useSearchParams();
   const sortRaw = searchParams.get("sortBy")?.split("-") || [
-    "memberSince",
+    "createdAt",
     "asc",
   ];
 

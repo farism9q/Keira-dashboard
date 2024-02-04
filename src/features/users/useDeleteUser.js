@@ -13,7 +13,7 @@ export function useDeleteUser() {
         error: err => `${err}`,
       }),
 
-    onSuccess: () => {
+    onSuccess: userId => {
       queryClient.invalidateQueries({
         queryKey: ["users", `user-${userId}`],
       });

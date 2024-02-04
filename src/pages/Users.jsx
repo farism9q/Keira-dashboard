@@ -26,11 +26,11 @@ const Users = () => {
             options={[
               {
                 label: "Oldest users (Oldest First)",
-                value: "memberSince-asc",
+                value: "createdAt-asc",
               },
               {
                 label: "Newest users (Newest First)",
-                value: "memberSince-desc",
+                value: "createdAt-desc",
               },
               {
                 label: "Worst rate (Worst First)",

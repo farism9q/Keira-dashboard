@@ -20,7 +20,7 @@ export async function getUsers({ filter, sortBy }) {
 
   if (!sortBy) {
     sortBy = {
-      field: "memberSince",
+      field: "createdAt",
       direction: "asc",
     };
   }
@@ -61,6 +61,9 @@ export async function deleteUser(id) {
 
   const document = doc(usersRef, id);
   await deleteDoc(document);
+
+  // To get user id in toast success function
+  return id;
 }
 
 // Get the numbers of each users type in Keira

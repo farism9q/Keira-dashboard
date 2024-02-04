@@ -28,7 +28,7 @@ const TodaysBookings = () => {
       {todayBookings.length > 0 ? (
         <DashboardTable
           currentPage={currentPage}
-          headers={["delivery option", "status", "forgot", "time"]}
+          headers={["delivery option", "days", "status", "time"]}
           totalPages={totalPages}
           pageQueryName={todayBookings}
           render={paginatedTodayBookings.map(booking => (

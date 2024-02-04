@@ -18,10 +18,13 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="flex justify-center items-center gap-3">
-      <form className="flex flex-col gap-2 py-4 items-center rounded-md">
-        <div className="flex justify-between gap-2">
-          <label htmlFor="email" className="font-semibold text-[20px]">
+    <form className="flex flex-col gap-6 py-4 items-center rounded-md">
+      <div className="space-y-4">
+        <div className="flex justify-between w-full">
+          <label
+            htmlFor="email"
+            className="font-semibold text-[20px] text-white"
+          >
             Email
           </label>
           <div className="flex justify-between gap-2 items-center">
@@ -41,8 +44,11 @@ const LoginForm = () => {
           </div>
         </div>
 
-        <div className="flex justify-between gap-2 items-center">
-          <label htmlFor="password" className="font-semibold text-[20px]">
+        <div className="flex justify-between w-full gap-3">
+          <label
+            htmlFor="password"
+            className="font-semibold text-[20px] text-white"
+          >
             Password
           </label>
           <div className="flex gap-2">
@@ -61,12 +67,10 @@ const LoginForm = () => {
             )}
           </div>
         </div>
+      </div>
 
-        <Button className="bg-gray-500" onClick={handleLogin}>
-          {!isLogging ? "LOGIN" : "..."}
-        </Button>
-      </form>
-    </div>
+      <Button onClick={handleLogin}>{!isLogging ? "LOGIN" : "..."}</Button>
+    </form>
   );
 };
 

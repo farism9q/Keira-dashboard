@@ -68,10 +68,8 @@ export async function deleteUser(id) {
     requireAuth: true,
   });
 
-  const body = await res.json();
-
-  if (body.status !== "success") {
-    throw new Error(body.message || "Something went wrong");
+  if (!res.ok) {
+    throw new Error("Something went wrong");
   }
 
   // Deleting a user returns null

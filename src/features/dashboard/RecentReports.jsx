@@ -9,6 +9,7 @@ import DashboardTable from "../../ui/DashboardTable";
 import Box from "../../ui/Box";
 import CustomSkeleton from "../../ui/CustomSkeleton";
 import Status from "../../ui/Status";
+import Empty from "../../ui/Empty";
 
 const TOTAL_TEXT_LENGTH = 8;
 
@@ -61,7 +62,7 @@ const RecentReports = () => {
         />
       ) : (
         <Empty>
-          <p>No users</p>
+          <p>No reports</p>
         </Empty>
       )}
     </Box>

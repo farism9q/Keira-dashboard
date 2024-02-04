@@ -12,12 +12,13 @@ import Image from "../../ui/Image";
 import Tag from "../../ui/Tag";
 import ConfirmModal from "../../ui/ConfirmModal";
 import { useDeleteUser } from "./useDeleteUser";
+import { formateFBDate } from "../../utils/helper";
 
 const UserRow = ({ user }) => {
   const navigate = useNavigate();
   const { deleteUser } = useDeleteUser();
 
-  const { id, fName, lName, profileImage, averageRating, type, memberSince } =
+  const { id, fName, lName, profileImage, averageRating, type, createdAt } =
     user;
   const fullName = fName + " " + lName;
 
@@ -41,7 +42,7 @@ const UserRow = ({ user }) => {
       </TableCell>
 
       <TableCell>{averageRating}</TableCell>
-      <TableCell>{memberSince}</TableCell>
+      <TableCell>{formateFBDate({ dates: [createdAt] })[0]}</TableCell>
       <TableCell>
         <Popover>
           <PopoverTrigger
