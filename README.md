@@ -2,6 +2,20 @@
 
 # Admin Web Application for Keira | كيرا
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+  - [Dashboard Page](#dashboard-page)
+  - [Reports Page](#reports-page)
+  - [Bookings Page](#bookings-page)
+  - [Users and Cars Pages](#users-and-cars-pages)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Backend Repository](#backend-repository)
+- [Dependencies](#dependencies)
+- [Demo](#demo)
+
 ## Overview
 
 This web application is designed for administrators of our app, providing a comprehensive dashboard and various pages to manage different aspects of the application.
@@ -61,3 +75,7 @@ Listed below are the main libraries and dependencies used in this project:
 - [react-router-dom](https://reactrouter.com/en/main/start/tutorial): Declarative routing for React.js.
 - [recharts](https://recharts.org/en-US/guide/getting-started): A composable charting library built on React components.
 - [swiper](https://swiperjs.com/react): Powerful and modern touch slider.
+
+## Demo
+
+[Youtube demo](https://www.youtube.com/watch?v=dZubjA6pt4w)
